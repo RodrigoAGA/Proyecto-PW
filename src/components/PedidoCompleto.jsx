@@ -1,4 +1,6 @@
 import React from 'react'
+import Pie from './Pie'
+import Cabecera from './Cabecera'
 
 function PedidoCompleto() {
     return (
