@@ -4,6 +4,9 @@ import Inicio from './components/Inicio'
 import Checkout from "./components/Checkout"
 import Carrito from "./components/Carrito"
 import PedidoCompleto from "./components/PedidoCompleto"
+import UsuarioAdminProductos from "./components/UsuarioAdminProductos"
+import UsuarioAdminAgregarProducto from "./components/UsuarioAdminAgregarProducto"
+// import UsuarioAdminProductos from "./components/UsuarioAdminProductos"
 
 function App() {
   return (
@@ -14,6 +17,8 @@ function App() {
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="/carrito" element={ <Carrito /> } />
         <Route path="/pedido_completo" element={ <PedidoCompleto /> } />
+        <Route path="/usuario_admin_productos" element={ <UsuarioAdminProductos /> } />
+        <Route path="/usuario_admin_agregar_producto" element={ <UsuarioAdminAgregarProducto /> } />
       </Routes>
     </div>
   )
