@@ -1,6 +1,7 @@
 import React from 'react'
 import Pie from './Pie'
 import Cabecera from './Cabecera'
+import { Link } from "react-router-dom";
 
 function Carrito() {
     
@@ -26,12 +27,6 @@ function Carrito() {
         ]);
       
         const [productosGuardados, setProductosGuardados] = React.useState([
-          {
-            id: 2,
-            nombre: 'Star Wars Collection: Darth Vader White (Special Christmas 2024 Disney Edition)',
-            precio: 65.99,
-            cantidad: 1,
-          },
         ]);
       
         const handleEliminarProductoCarrito = (idProducto) => {
@@ -163,7 +158,7 @@ function Carrito() {
           </table>
         )}
       </div>
-      <button className="boton-completar-compra">Completar compra</button>
+      <button><Link to="/checkout">Completar compra</Link> </button>
     </div>
         <Pie/>
         </>

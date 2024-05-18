@@ -1,6 +1,7 @@
 import React from 'react'
 import Pie from './Pie'
 import Cabecera from './Cabecera'
+import { Link } from "react-router-dom";
 
 function Checkout() {
         const [shippingMethod, setShippingMethod] = React.useState('Economic');
@@ -131,8 +132,7 @@ function Checkout() {
           <td>S/{total}</td>
         </tr>
       </table>
-
-      <button className="complete-order-button">Completar Orden</button>
+      <button><Link to="/pedido_completo">Completar Orden</Link> </button>
     </div>
         <Pie/>
         </>

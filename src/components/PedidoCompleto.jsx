@@ -1,6 +1,7 @@
 import React from 'react'
 import Pie from './Pie'
 import Cabecera from './Cabecera'
+import { Link } from "react-router-dom";
 
 function PedidoCompleto() {
     return (
@@ -13,7 +14,7 @@ function PedidoCompleto() {
         </div>
         <div className="body">
           <p>Puedes ver el detalle y estado de tu pedido ingresando a tu cuenta</p>
-          <a href="#" className="button">Ir a mi cuenta</a>
+          <a href="#" className="button"><Link to="/carrito">Ir a mi cuenta</Link></a>
         </div>
         <div className="footer">
           <p>También de podría interesar...</p>
