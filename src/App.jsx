@@ -8,11 +8,11 @@ import Detalle from "./components/Detalle"
 import Busqueda from "./components/Busqueda"
 import UsuarioAdminAgregarProductos from "./components/UsuarioAdminAgregarProductos"
 import UsuarioAdminProductos from "./components/UsuarioAdminProductos"
-import ListadoSeries from "./1Listado_Serie_A"
-import AgregarSerie from "./2Agregar_Serie_Admin";
-import DetallesOrden from "./3Detalles_De_Orden_Usuario_Registrado"
-import DatosDeRegistroUsuario from "./4Datos_De_Registro_Usuario_Registrado";
-import CambiarContrasena from "./5Cambiar_Contraseña";
+import ListadoSeries from "./components/1Listado_Serie_A"
+import AgregarSerie from "./components/2Agregar_Serie_Admin";
+import DetallesOrden from "./components/3Detalles_De_Orden_Usuario_Registrado"
+import DatosDeRegistroUsuario from "./components/4Datos_De_Registro_Usuario_Registrado";
+import CambiarContrasena from "./components/5Cambiar_Contraseña";
 
 function App() {
   return (
