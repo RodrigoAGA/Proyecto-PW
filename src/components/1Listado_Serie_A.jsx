@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/1ListSeriesAdmin';
+import './styles/1ListSeriesAdmin.css';
 
 const ListadoSeries = () => {
   return (
@@ -56,21 +56,21 @@ const ListadoSeries = () => {
             <li style={styles.anterior}>Anterior</li>
             <li>1</li>
             <li>
-              <a href="./1Listado_De_Series_pagina2.html" style={styles.nav2Li}>
+              <a href="#" style={styles.nav2Li}>
                 2
               </a>
             </li>
             <li>3</li>
             <li>4</li>
             <li style={styles.siguiente}>
-              <a href="./1Listado_De_Series_pagina2.html" style={styles.nav2Li}>
+              <a href="#" style={styles.nav2Li}>
                 Siguiente
               </a>
             </li>
           </ul>
         </nav2>
       </div>
-      <iframe id="iframe-pagina2" src="1Listado_De_Series_pagina2.html" style={{ display: 'none' }}></iframe>
+      <iframe id="iframe-pagina2" src="#" style={{ display: 'none' }}></iframe>
     </div>
   );
 };
