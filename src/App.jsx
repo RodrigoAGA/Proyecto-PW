@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="Aplicacion">
       <Routes>
-        <Route path="/Inicio.jsx" element={ <Inicio /> } />
+        <Route path="/" element={ <Inicio /> } />
         <Route path="/Detalle.jsx" element={ <Detalle /> } />
         <Route path="/Busqueda.jsx" element={ <Busqueda /> } />
         <Route path="/usuario_admin_dashboard" element={ <UsuarioAdminDashboard /> } />

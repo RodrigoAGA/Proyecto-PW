@@ -6,7 +6,7 @@ function Cabecera() {
   return (
     <div className="busqueda"> 
       <div className="topnav"> 
-        <a className="active" href="./Inicio.jsx">Tienda</a>
+        <a className="active" href="./">Tienda</a>
         <a href="#MasVendidos">Mas vendidos</a>
         <a href="#Nuevos">Nuevos</a>
         <a href="#Ofertas">Ofertas</a>
