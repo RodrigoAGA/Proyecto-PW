@@ -8,19 +8,15 @@ import Detalle from "./components/Detalle"
 import Busqueda from "./components/Busqueda"
 import UsuarioAdminAgregarProductos from "./components/UsuarioAdminAgregarProductos"
 import UsuarioAdminProductos from "./components/UsuarioAdminProductos"
-<<<<<<< HEAD
 // import ListadoSeries from "./components/1Listado_Serie_A"
 // import AgregarSerie from "./components/2Agregar_Serie_Admin";
 // import DetallesOrden from "./components/3Detalles_De_Orden_Usuario_Registrado"
 // import DatosDeRegistroUsuario from "./components/4Datos_De_Registro_Usuario_Registrado";
 // import CambiarContrasena from "./components/5Cambiar_Contraseña";
-=======
-import ListadoSeries from "./components/1Listado_Serie_A"
-import AgregarSerie from "./components/2Agregar_Serie_Admin";
-import DetallesOrden from "./components/3Detalles_De_Orden_Usuario_Registrado"
-import DatosDeRegistroUsuario from "./components/4Datos_De_Registro_Usuario_Registrado";
-import CambiarContrasena from "./components/5Cambiar_Contraseña";
->>>>>>> 1a4f26f451e08b01e1e52614615c33fa5abc3d8c
+import AdminOrderDetail from "./components/AdminOrderDetail"
+import AdminOrders from "./components/AdminOrders"
+import AdminUserDetail  from "./components/AdminUserDetail"
+import AdminUsers from "./components/AdminUsers"
 
 function App() {
   return (
@@ -40,6 +36,10 @@ function App() {
         {/* <Route path="/detalles_orden" element={<DetallesOrden/>}/> */}
         {/* <Route path="/datos_registro_usuario" element={<DatosDeRegistroUsuario/>}/> */}
         {/* <Route path="/cambiar_contrasena" element={<CambiarContrasena/>}/> */}
+        <Route path="/admin_order_detail" element={ <AdminOrderDetail /> } />
+        <Route path="/admin_orders" element={ <AdminOrders /> } />
+        <Route path="/admin_user_detail" element={ <AdminUserDetail /> } />
+        <Route path="/admin_users" element={ <AdminUsers /> } />
       </Routes>
     </div>
   )
