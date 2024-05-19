@@ -1,0 +1,147 @@
+body{
+    background-color:rgb(235, 238, 238);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  #lateral{
+  background-color: white;
+  width: 9%;
+  margin-left: 1.5%;
+  padding: 1% 2% 22.9% 1%;
+  float: left;
+  color: rgb(54, 53, 53);
+  }
+  #cabecera{
+      background-color: white;
+      font-size:89%;
+      width: 100%;
+      padding: 0.1% 0% 0.1% 1%;
+      margin-bottom: 1.5%;
+  }
+  #otros li{
+      padding: 0% 0% 0% 25%;
+      margin-bottom: 21%;
+      font-size:79%;
+      list-style: none;
+    padding: 0;
+  }
+  #otros a[href="./5Cambiar_Contraseña.html"] {
+    text-decoration: none; 
+    color: rgb(54, 53, 53);
+}
+#otros a[href="./4Datos_De_Registro_Usuario_Registrado.html"] {
+    text-decoration: none; 
+    color: rgb(54, 53, 53);
+}
+
+
+#otros a[href="./5Cambiar_Contraseña.html"]:hover {
+    color: black; 
+}
+  #otros li:hover{
+    font-weight: bold;
+    color: black;
+}
+ 
+  #title{
+      padding: 2% 0% 1% 15%;
+      margin-top: 4%;
+  }
+  #series{
+      float: left;
+      width: 82%;
+      padding: 0.7% 0% 0.7% 1.2%;
+      background-color: rgb(212, 212, 212);
+      margin: 0% 0% 0.6% 1.5%;
+      font-weight: bold;
+  }
+  #busqueda{
+      float: left;
+      width: 83.2%;
+      padding: 0.7% 0% 0.7% 1.2%;
+      margin: 0% 0% 0.6% 1.5%;
+      border-radius: 10px;
+      font-size: medium;
+      border: 2px rgb(49, 47, 47);
+  }#id, #id1{
+    width: 5%;
+}
+#nombre{
+    width: 14%;
+}
+#nombre1{
+    width: 20%;
+}
+#descrip1{
+    width: 49%;
+}
+#acción:hover{
+    text-decoration: underline;
+}
+  #listado{
+      background-color: white;
+      float: left;
+      width: 83.2%;
+      margin: 0% 0% 0% 1.5%;
+      padding: 0% 0% 0% 0%;
+      font-weight: bold;
+  }
+
+  #listado_2{
+    float:inline-end;
+    width: 29%;
+}#listado_2 li {
+    width: 32.5%;
+}
+
+  #listado2 {
+    display: inline-block;
+    font-weight: lighter;
+    width: 60%;
+}
+#listado2 li {
+    margin: 0% 3.3% 0% 0%;
+}
+#listado2_2{
+    float:inline-end;
+    font-weight: lighter;
+    width: 29%;
+}#listado2_2 li {
+    margin: 0% 25% 0% 0%;
+    width: 32.5 ;
+}
+
+
+  nav  li {
+      display:inline-block;
+      width: 16.3%;}
+
+      nav2 li{
+        display:inline-block;
+        width: 1.5%;
+        padding: 0.55% 0.35% 0.55% 0.35%;
+        margin: 0% 0.01% 0.6% 0%;
+        text-align: center;
+        color: rgb(0, 81, 255);
+      }
+      nav2 li:hover{
+        color: black;
+        background-color: skyblue;
+
+    }
+    #anterior{
+        background-color:rgb(235, 238, 238);
+        margin: 1% 2% 0% 67%;
+        color: gray;
+    }
+    #anterior:hover{
+        color: black;
+    }
+    #siguiente{
+        background-color:rgb(235, 238, 238);
+        margin: 0% 0.0% 0% 1%;  
+        color: rgb(105, 104, 104);  }
+        #siguiente:hover{
+            color: black;
+        }
+        
+    
