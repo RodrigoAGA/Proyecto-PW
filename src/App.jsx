@@ -14,8 +14,8 @@ function App() {
     <div className="Aplicacion">
       <Routes>
         <Route path="/" element={ <Inicio /> } />
-        <Route path="/Detalle.jsx" element={ <Detalle /> } />
-        <Route path="/Busqueda.jsx" element={ <Busqueda /> } />
+        <Route path="/detalle" element={ <Detalle /> } />
+        <Route path="/busqueda" element={ <Busqueda /> } />
         <Route path="/admin_dashboard" element={ <UsuarioAdminDashboard /> } />
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="/carrito" element={ <Carrito /> } />
