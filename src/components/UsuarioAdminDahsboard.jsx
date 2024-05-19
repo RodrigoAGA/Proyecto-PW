@@ -6,16 +6,11 @@ function UsuarioAdminDashboard() {
     return (
         <>
         <Cabecera/>
-        <br/>
+        <header>Cuenta - Usuario Administrador - Dashboard</header>
         <nav class="sidebar">
         <ul>
             <li>Admin</li>
             <li>Dashboard</li>
-            <li>Usuarios registrados</li>
-            <li>Productos</li>
-            <li>Ordenes</li>
-            <li>Productos mas vendidos</li>
-            <li>Series</li>
   
         </ul>
         </nav>

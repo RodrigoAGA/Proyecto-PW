@@ -24,11 +24,7 @@ function Checkout() {
       cvv: ''
     };
   });
-  const [productosCarrito, setProductosCarrito] = React.useState(() => {
-    const savedCartItems = localStorage.getItem('productosCarrito');
-    return savedCartItems ? JSON.parse(savedCartItems) : [];
-  });
-  const subtotal = productosCarrito.reduce((total, producto) => total + producto.precio * producto.cantidad, 0);
+  const subtotal = 550 + 550;
   const shippingCost = shippingMethod === 'Economic' ? 5 : 17;
   const tax = subtotal * 0.18;
   const total = subtotal + shippingCost + tax;
@@ -149,14 +145,7 @@ function Checkout() {
         </div>
 
         <h2>Items en Pedido</h2>
-        <div className="order-items">
-          <ul>
-            {productosCarrito.map(producto => (
-              <li key={producto.id}>{producto.nombre} - {producto.cantidad} x S/{producto.precio.toFixed(2)}</li>
-            ))}
-          </ul>
-        </div>
-
+        {/* Aquí se muestra la lista de items en el pedido */}
 
         <h2>Resumen de Orden</h2>
         <table>
