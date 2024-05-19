@@ -11,19 +11,19 @@ function Carrito() {
       {
         id: 1,
         nombre: 'Voltron Mini Action Voltron Vehicle Force Figure (Standard)',
-        precio: 65.99,
+        precio: 69.00,
         cantidad: 1,
       },
       {
         id: 2,
         nombre: 'Star Wars Collection: Darth Vader White (Special Christmas 2024 Disney Edition)',
-        precio: 65.99,
+        precio: 65.00,
         cantidad: 2,
       },
       {
         id: 3,
         nombre: 'Star Wars Collection: Darth Vader White (Special Christmas 2024 Disney Edition)',
-        precio: 65.99,
+        precio: 65.00,
         cantidad: 2,
       },
     ];
@@ -113,7 +113,7 @@ function Carrito() {
                         onChange={(event) => handleCambiarCantidad(producto.id, parseInt(event.target.value))}
                       />
                     </td>
-                    <td>S/{producto.precio * producto.cantidad}.00</td>
+                    <td>S/{producto.precio * producto.cantidad}</td>
                     <td>
                       <button onClick={() => handleEliminarProductoCarrito(producto.id)}>Eliminar</button>
                       <button onClick={() => handleGuardarParaDespues(producto.id)}>Guardar para después</button>
@@ -159,7 +159,7 @@ function Carrito() {
                         onChange={(event) => handleCambiarCantidad(producto.id, parseInt(event.target.value))}
                       />
                     </td>
-                    <td>S/{producto.precio * producto.cantidad}.00</td>
+                    <td>S/{producto.precio * producto.cantidad}</td>
                     <td>
                       <button onClick={() => handleMoverAlCarrito(producto.id)}>Mover al carrito</button>
                       <button onClick={() => handleEliminarProductoGuardado(producto.id)}>Eliminar</button>
