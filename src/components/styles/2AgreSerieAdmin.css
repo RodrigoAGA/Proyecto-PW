@@ -1,0 +1,84 @@
+#cajagrande{
+    float: left;
+    width: 37%;
+    height: 54%;
+    padding: 0.7% 0% 0.7% 1.2%;
+    margin: 0% 0% 0.6% 1.5%;
+    border-radius: 10px;
+    border: 2px solid rgb(49, 47, 47); 
+}
+#cajanombre{
+    float: left;
+    width: 44.6%;
+    padding: 0.7% 0% 0.7% 1.2%;
+    margin: 0% 0% 0.6% 1.5%;
+    border-radius: 10px;
+    font-size: medium;
+    border: 2px solid rgb(49, 47, 47); 
+}
+#cajadescrip{
+    float: left;
+    width: 44.6%;
+    padding: 0.7% 0% 0.7% 1.2%;
+    margin: 0% 0% 0.6% 1.5%;
+    border-radius: 10px;
+    font-size: medium;
+    border: 2px solid rgb(49, 47, 47); 
+}
+#series2{
+    float: right;
+    width: 43.5%;
+    padding: 0.7% 0% 0.7% 1.2%;
+    background-color: rgb(212, 212, 212);
+    margin: 0% 1.9% 0.7% 0%;
+    font-weight: bold;
+}
+
+  #listadodos{
+      background-color: white;
+      float: left;
+      width: 44.5%;
+      margin: 0% 0% 0% 1.5%;
+      padding: 0% 0% 15% 0%;
+      font-weight: bold;
+  }
+  #boton{
+    border-radius: 4px;
+    font-size: larger;
+    background-color: white;
+    margin: 0% 0% 0% 16.4%;
+    padding: 0.3% 0.5% 0.3% 0.5%;
+    border: 2px solid rgb(49, 47, 47); 
+}
+#boton:hover{
+    background-color: rgb(228, 227, 227);
+}
+#boton2{
+    border-radius: 12px;
+    float: inline-end;
+    font-size: larger;
+    background-color: black;
+    color: white;
+    margin: 0% 2% 0% 16.4%;
+    padding: 0.3% 2% 0.3% 2%;
+    border: 2px solid rgb(49, 47, 47); 
+}
+#boton2:hover{
+    background-color: rgb(44, 43, 43);
+}
+#guardar{
+    border-radius: 4px;
+    font-size: larger;
+    background-color: black;
+    color: white;
+    margin: 0.5% 1% 0% 0%;
+    padding: 0.5% 3% 0.5% 3%;
+    float: right;
+}
+#guardar:hover{
+    background-color: rgb(29, 28, 28);
+}
+#subtitulo{
+    font-weight: bold;
+    margin: 0.5% 0% 0.3% 54.5%;
+}

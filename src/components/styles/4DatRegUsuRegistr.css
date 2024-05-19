@@ -1,0 +1,40 @@
+#dato3{
+    float: left;
+      width: 30%;
+      padding: 0.7% 0% 0.7% 1.2%;
+      margin: 0% 27.5% 0.6% 27.5%;
+      border-radius: 10px;
+      font-size: medium;
+      border: 2px solid rgb(49, 47, 47); 
+}#dato2{
+    float: left;
+      width: 30%;
+      padding: 0.7% 0% 0.7% 1.2%;
+      margin: 0% 27.5% 0.6% 27.5%;
+      
+      border-radius: 10px;
+      font-size: medium;
+      border: 2px solid rgb(49, 47, 47); 
+}
+#dato1{
+    float: left;
+      width: 30%;
+      padding: 0.7% 0% 0.7% 1.2%;
+      margin: 2% 27.5% 0.6% 27.5%;
+      border-radius: 10px;
+      font-size: medium;
+      border: 2px solid rgb(49, 47, 47); 
+}
+#actualizar{
+    border-radius: 4px;
+    font-size: larger;
+    background-color: black;
+    color: white;
+    margin: 2% 1% 0% 37%;
+    padding: 0.5% 3% 0.5% 3%;
+    float: left;
+}
+#actualizar:hover{
+    background-color: rgb(29, 28, 28);
+    border: 2px;
+}
