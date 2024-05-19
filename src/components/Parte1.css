@@ -695,3 +695,49 @@ color: #000000;
   color: gray;
   margin: 10px 0 0 0;
 } 
+
+.button {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.search-bar {
+  margin: 20px 0;
+}
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+table, th, td {
+  border: 1px solid #ccc;
+}
+th, td {
+  padding: 15px;
+  text-align: left;
+}
+th {
+  background-color: #f9f9f9;
+}
+.pagination {
+  margin: 20px 0;
+  text-align: center;
+}
+.pagination a {
+  margin: 0 5px;
+  text-decoration: none;
+  color: #333;
+}
+.pagination a.active {
+  font-weight: bold;
+}
