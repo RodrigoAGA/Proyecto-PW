@@ -6,6 +6,8 @@ import Carrito from "./components/Carrito"
 import PedidoCompleto from "./components/PedidoCompleto"
 import Detalle from "./components/Detalle"
 import Busqueda from "./components/Busqueda"
+import UsuarioAdminAgregarProductos from "./components/UsuarioAdminAgregarProductos"
+import UsuarioAdminProductos from "./components/UsuarioAdminProductos"
 
 function App() {
   return (
@@ -14,10 +16,12 @@ function App() {
         <Route path="/" element={ <Inicio /> } />
         <Route path="/Detalle.jsx" element={ <Detalle /> } />
         <Route path="/Busqueda.jsx" element={ <Busqueda /> } />
-        <Route path="/usuario_admin_dashboard" element={ <UsuarioAdminDashboard /> } />
+        <Route path="/admin_dashboard" element={ <UsuarioAdminDashboard /> } />
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="/carrito" element={ <Carrito /> } />
         <Route path="/pedido_completo" element={ <PedidoCompleto /> } />
+        <Route path="/admin_productos" element={ <UsuarioAdminProductos /> } />
+        <Route path="/admin_agregar_productos" element={ <UsuarioAdminAgregarProductos /> } />
       </Routes>
     </div>
   )

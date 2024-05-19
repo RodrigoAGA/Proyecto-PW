@@ -3,7 +3,7 @@ import Pie from './Pie'
 import Cabecera from './Cabecera'
 import "./Parte1.css"
 
-function UsuarioAdminDashboard() {
+function UsuarioAdminProductos() {
     return (
         <>
         <Cabecera/>
@@ -28,4 +28,4 @@ function UsuarioAdminDashboard() {
     )
 }
 
-export default UsuarioAdminDashboard
+export default UsuarioAdminProductos
