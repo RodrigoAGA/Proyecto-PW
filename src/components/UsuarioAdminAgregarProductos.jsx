@@ -7,22 +7,46 @@ function UsuarioAdminAgregarProductos() {
     return (
         <>
         <Cabecera/>
-        <header>Cuenta - Usuario Administrador - Dashboard</header>
-        <nav class="sidebar">
-        <ul>
-            <li>Admin</li>
-            <li>Dashboard</li>
-  
-        </ul>
-        </nav>
-        <main class="dashboard">
-            <div class="card">68<br/>Órdenes del día de hoy</div>
-            <div class="card">12<br/>Usuarios nuevos</div>
-            <div class="card income">S/ 13,500.00<br/>Ingresos de hoy</div>
-
-        </main>
-        
-
+        <div class="container">
+            <div class="sidebar">
+                <ul>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="#">Usuarios registrados</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Órdenes</a></li>
+                    <li><a href="#">Productos más vendidos</a></li>
+                    <li><a href="#">Series</a></li>
+                </ul>
+            </div>
+            <div class="main-content">
+                <div class="header">
+                    <h2>Agregar Producto</h2>
+                </div>
+                <div class="form-container">
+                    <div class="left-column">
+                        <div class="image-placeholder">
+                            <span>Imagen del Producto</span>
+                        </div>
+                        <button class="button">Agregar Imagen</button>
+                    </div>
+                    <div class="right-column">
+                        <input type="text" placeholder="Nombre" name="nombre"></input>
+                        <textarea placeholder="Descripción" name="descripcion"></textarea>
+                        <textarea placeholder="Características" name="caracteristicas"></textarea>
+                        <div class="inputs">
+                            <input type="text" class="small-input" placeholder="Marca" name="marca"></input>
+                            <input type="text" class="small-input" placeholder="Serie" name="serie"></input>
+                            <input type="text" class="small-input" placeholder="Precio" name="precio"></input>
+                        </div>
+                        <div class="inputs">
+                            <input type="text" class="small-input" placeholder="Tipo" name="tipo"></input>
+                            <input type="text" class="small-input" placeholder="Stock" name="stock"></input>
+                        </div>
+                        <button class="submit-button">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <Pie/>
         </>
     )
