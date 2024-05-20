@@ -2,7 +2,7 @@ import React from 'react';
 import './styles/1ListSeriesAdmin.css';
 import './styles/2AgreSerieAdmin.css';
 
-function AgregarSerie() {
+function DetallesOrden() {
     return (
         <div>
             <div id="cabecera"><h2>TIENDA</h2></div>

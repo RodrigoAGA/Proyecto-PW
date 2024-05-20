@@ -74,7 +74,7 @@ const ListadoSeries = () => {
     </div>
   );
 };
-document.getElementById('busqueda').addEventListener('keypress', function(event) {
+/*document.getElementById('busqueda').addEventListener('keypress', function(event) {
   if (event.key === 'Enter') {
       const busqueda = this.value.toLowerCase();
       const series = document.querySelectorAll('nav'); 
@@ -112,6 +112,9 @@ document.getElementById('busqueda').addEventListener('keypress', function(event)
           alert('No se encontraron resultados');
       }
   }
-});
+});*/
 
 export default ListadoSeries;
+
+
+
