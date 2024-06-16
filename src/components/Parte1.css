@@ -814,3 +814,106 @@ th {
   align-items: center; 
   justify-content: center;
 }
+.contenedor-todo{
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+}
+.caja-trasera{
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  background-color: rgba(150, 152, 154, 0.653);
+
+}
+.caja-trasera div{
+  margin: 100px 40px;
+  color: white;
+  transition: all 500ms;
+
+}
+.caja-trasera div p,
+.caja-trasera div button{
+  margin-top: 30px;
+}
+.caja-trasera div h3{
+  font-weight: 400;
+  font-size: 26px;
+  
+}
+.caja-trasera button{ 
+  padding: 10px 40px;
+  border: 2px solid white;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  transition: all 300ms;
+
+}
+.caja-trasera button:hover{
+  background: white;
+  color: grey;
+}
+/*formularios*/
+
+.contenedor-login-registro{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 300px;
+  position: relative;
+  top: -220px;
+  left:20px;
+
+}
+.contenedor-login-registro form{
+  width: 100%;
+  padding: 80px 20px;
+  background: white;
+  position: absolute;
+  border-radius: 20px;
+}
+
+.contenedor-login-registro form h2{
+  font-size: 30px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: grey;
+}
+.contenedor-login-registro form input{
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  border: 1px;
+  background: rgb(226, 214, 214);
+  font-size: 16px;
+  outline: none;
+}
+.contenedor-login-registro form button{
+  padding: 10px 40px;
+  margin-top: 40px;
+  border: none;
+  font-size: 14px;
+  background:gray;
+  color:white;
+  cursor: pointer;
+  outline: none;
+}
+
+.formulario-login ,
+.formulario-login a{
+  opacity: 1;
+  display: block;
+  justify-content: center;
+}
+.formulario-registro{
+  display: none;
+}
+.formulario-recuperar-contraseña{
+  display:none;
+}
