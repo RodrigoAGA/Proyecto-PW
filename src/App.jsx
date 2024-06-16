@@ -40,6 +40,7 @@ function App() {
         <Route path="/admin_orders" element={ <AdminOrders /> } />
         <Route path="/admin_user_detail" element={ <AdminUserDetail /> } />
         <Route path="/admin_users" element={ <AdminUsers /> } />
+        <Route path="/Formulario" element={ <Formulario /> } />
       </Routes>
     </div>
   )
