@@ -76,7 +76,8 @@ function Busqueda() {
                 containerDiv.appendChild(productoDetalleDiv);
 
                 containerDiv.addEventListener('click', () => {
-                    window.location.href = `./Detalle.jsx`;
+                    const url = `./DetalleProducto.html?id=${producto.id}&titulo=${encodeURIComponent(producto.titulo)}&fabricante=${encodeURIComponent(producto.fabricante)}&imagenSrc=${encodeURIComponent(producto.imagenSrc)}&precio=${encodeURIComponent(precioAleatorio)}`;
+                    window.location.href = url;
                 });
 
                 productosContainer.appendChild(containerDiv);
