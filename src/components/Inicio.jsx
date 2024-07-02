@@ -64,7 +64,7 @@ function Inicio() {
         </div>
         <div className="search-button">
           <button>
-            <a href="./Busqueda.jsx">Buscar</a>
+            <a href="./busqueda">Buscar</a>
           </button>
         </div>
       </div>
