@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Pie from './Pie';
 import Cabecera from './Cabecera';
 import './Parte1.css';
-import { registro, iniciarSesion, recuperar } from '../../Funciones.js';
+import { registro, iniciarSesion, recuperar } from '../Funciones.js';
 
 const Formulario = () => {
     const [state, setState] = useState({

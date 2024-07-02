@@ -17,6 +17,7 @@ import AdminOrderDetail from "./components/AdminOrderDetail"
 import AdminOrders from "./components/AdminOrders"
 import AdminUserDetail  from "./components/AdminUserDetail"
 import AdminUsers from "./components/AdminUsers"
+import Formulario from "./components/Formulario"
 
 function App() {
   return (
