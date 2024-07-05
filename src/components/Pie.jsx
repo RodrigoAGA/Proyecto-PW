@@ -18,8 +18,8 @@ function Pie() {
         </div>
         <div className="footer-nombre">
           <p>Cuenta</p>
-          <a href="./Formulario.jsx">Login</a>
-          <a href="./Formulario.jsx">Registro</a>
+          <a href="./Formulario">Login</a>
+          <a href="./Registro">Registro</a>
           <a href="">Carrito</a>
         </div>
         <div className="footer-nombre">
