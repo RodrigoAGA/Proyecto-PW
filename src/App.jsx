@@ -18,6 +18,9 @@ import AdminOrders from "./components/AdminOrders"
 import AdminUserDetail  from "./components/AdminUserDetail"
 import AdminUsers from "./components/AdminUsers"
 import Formulario from "./components/Formulario"
+import Registro from "./components/Registro"
+import Recuperar from "./components/Recuperar"
+
 
 function App() {
   return (
@@ -42,6 +45,8 @@ function App() {
         <Route path="/admin_user_detail" element={ <AdminUserDetail /> } />
         <Route path="/admin_users" element={ <AdminUsers /> } />
         <Route path="/Formulario" element={ <Formulario /> } />
+        <Route path="/Recuperar" element={ <Recuperar /> } />
+        <Route path="/Registro" element={ <Registro /> } />
       </Routes>
     </div>
   )
