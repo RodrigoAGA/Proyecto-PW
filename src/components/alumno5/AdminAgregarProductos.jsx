@@ -1,9 +1,9 @@
 import React from 'react'
-import Pie from './Pie'
-import Cabecera from './Cabecera'
-import "./Parte1.css"
+import Pie from '../Pie'
+import Cabecera from '../Cabecera'
+import "../Parte1.css"
 
-function UsuarioAdminAgregarProductos() {
+function AdminAgregarProductos() {
     return (
         <>
         <Cabecera/>
@@ -52,4 +52,4 @@ function UsuarioAdminAgregarProductos() {
     )
 }
 
-export default UsuarioAdminAgregarProductos
+export default AdminAgregarProductos

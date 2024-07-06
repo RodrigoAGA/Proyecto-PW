@@ -1,9 +1,9 @@
 import React from 'react'
-import Pie from './Pie'
-import Cabecera from './Cabecera'
-import "./Parte1.css"
+import Pie from '../Pie'
+import Cabecera from '../Cabecera'
+import "../Parte1.css"
 
-function UsuarioAdminDashboard() {
+function AdminDashboard() {
     return (
         <>
         <Cabecera/>
@@ -46,4 +46,4 @@ function UsuarioAdminDashboard() {
     )
 }
 
-export default UsuarioAdminDashboard
+export default AdminDashboard
