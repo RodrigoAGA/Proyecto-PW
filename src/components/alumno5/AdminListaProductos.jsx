@@ -1,9 +1,9 @@
 import React from 'react'
-import Pie from './Pie'
-import Cabecera from './Cabecera'
-import "./Parte1.css"
+import Pie from '../Pie'
+import Cabecera from '../Cabecera'
+import "../Parte1.css"
 
-function UsuarioAdminProductos() {
+function AdminListaProductos() {
     return (
         <>
         <Cabecera/>
@@ -100,4 +100,4 @@ function UsuarioAdminProductos() {
     )
 }
 
-export default UsuarioAdminProductos
+export default AdminListaProductos

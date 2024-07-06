@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom"
-import UsuarioAdminDashboard from './components/UsuarioAdminDahsboard'
+import AdminDashboard from './components/alumno5/AdminDahsboard'
 import Inicio from './components/Inicio'
 import Checkout from "./components/Checkout"
 import Carrito from "./components/Carrito"
 import PedidoCompleto from "./components/PedidoCompleto"
 import Detalle from "./components/Detalle"
 import Busqueda from "./components/Busqueda"
-import UsuarioAdminAgregarProductos from "./components/UsuarioAdminAgregarProductos"
-import UsuarioAdminProductos from "./components/UsuarioAdminProductos"
+import AdminAgregarProductos from "./components/alumno5/AdminAgregarProductos"
+import AdminListaProductos from "./components/alumno5/AdminListaProductos"
 import ListadoSeries from "./components/1Listado_Serie_A"
 import AgregarSerie from "./components/2Agregar_Serie_Admin"
 import DetallesOrden from "./components/3Detalles_De_Orden_Usuario_Registrado"
@@ -29,12 +29,12 @@ function App() {
         <Route path="/" element={ <Inicio /> } />
         <Route path="/detalle" element={ <Detalle /> } />
         <Route path="/busqueda" element={ <Busqueda /> } />
-        <Route path="/admin_dashboard" element={ <UsuarioAdminDashboard /> } />
+        <Route path="/admin_dashboard" element={ <AdminDashboard /> } />
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="/carrito" element={ <Carrito /> } />
         <Route path="/pedido_completo" element={ <PedidoCompleto /> } />
-        <Route path="/admin_productos" element={ <UsuarioAdminProductos /> } />
-        <Route path="/admin_agregar_productos" element={ <UsuarioAdminAgregarProductos /> } />
+        <Route path="/admin_lista_productos" element={ <AdminListaProductos /> } />
+        <Route path="/admin_agregar_productos" element={ <AdminAgregarProductos /> } />
         <Route path="/Listado_Series" element={<ListadoSeries/>}/> 
         <Route path="/Agregar_Serie" element={<AgregarSerie/>}/> 
         <Route path="/DetallesOrden" element={<DetallesOrden/>}/> 
