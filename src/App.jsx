@@ -19,7 +19,7 @@ import Registro from "./components/Registro"
 import Recuperar from "./components/Recuperar"
 
 // Componentes de alumno 5
-import AdminDashboard from './components/alumno5/AdminDahsboard'
+import AdminDashboard from './components/alumno5/AdminDashboard'
 import AdminAgregarProductos from "./components/alumno5/AdminAgregarProductos"
 import AdminListaProductos from "./components/alumno5/AdminListaProductos"
 

@@ -10,9 +10,9 @@ function AdminListaProductos() {
         <div class="container">
             <div class="sidebar">
                 <ul>
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="./admin_dashboard">Dashboard</a></li>
                     <li><a href="#">Usuarios registrados</a></li>
-                    <li><a href="#">Productos</a></li>
+                    <li><a href="./admin_lista_productos">Productos</a></li>
                     <li><a href="#">Órdenes</a></li>
                     <li><a href="#">Productos más vendidos</a></li>
                     <li><a href="#">Series</a></li>
@@ -21,7 +21,7 @@ function AdminListaProductos() {
             <div class="main-content">
                 <div class="header">
                     <h2>Productos</h2>
-                    <a href="#" class="button">+ Agregar Producto</a>
+                    <a href="./admin_agregar_productos" class="button">+ Agregar Producto</a>
                 </div>
                 <div class="search-bar">
                     <input type="text" placeholder="Buscar por Id, serie o detalle..."></input>

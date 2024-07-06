@@ -1,18 +1,22 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Pie from '../Pie'
 import Cabecera from '../Cabecera'
 import "../Parte1.css"
+import {Link} from 'react-router-dom'
 
 function AdminDashboard() {
+    
+    
+    
     return (
         <>
         <Cabecera/>
         <div class="container">
         <div class="sidebar">
             <ul>
-                <li><a href="#">Dashboard</a></li>
+                <li><a href="./admin_dashboard">Dashboard</a></li>
                 <li><a href="#">Usuarios registrados</a></li>
-                <li><a href="#">Productos</a></li>
+                <li><a href="./admin_lista_productos">Productos</a></li>
                 <li><a href="#">Órdenes</a></li>
                 <li><a href="#">Productos más vendidos</a></li>
                 <li><a href="#">Series</a></li>
