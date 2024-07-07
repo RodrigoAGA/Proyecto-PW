@@ -25,7 +25,7 @@ const Formulario = () => {
       });
 
       const data = await res.json();
-      console.log("bienvenido"); // Aquí puedes manejar la respuesta del servidor
+      console.log("bienvenido"); 
     } catch (err) {
       console.error(err);
     }
