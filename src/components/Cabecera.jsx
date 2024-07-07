@@ -13,10 +13,13 @@ function Cabecera() {
       </div>
       <div className="cuenta"> 
         <button className="imagen">
-          <img src={compra} alt="" />
+          <img src={compra} alt=""/>
+          <a  className="active" href="./Carrito"></a>
         </button>
         <a href="#Ayuda">Ayuda</a>
-        <button className="perfil">Mi Cuenta</button> 
+        <button className="perfil">
+          <a className="active" href="./Formulario"> Mi Cuenta</a>
+          </button> 
       </div>
     </div>
   );
