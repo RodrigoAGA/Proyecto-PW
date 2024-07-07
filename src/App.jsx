@@ -12,10 +12,7 @@ import DatosRegistroUsuario from "./components/alumno4/DatosRegistroUsuario"
 import CambiarContrasena from "./components/alumno4/CambiarContrasena"
 import AgregarSerie from "./components/alumno4/AgregarSerie"
 //
-import AdminOrderDetail from "./components/AdminOrderDetail"
-import AdminOrders from "./components/AdminOrders"
-import AdminUserDetail  from "./components/AdminUserDetail"
-import AdminUsers from "./components/AdminUsers"
+
 import Formulario from "./components/Formulario"
 import Registro from "./components/Registro"
 import Recuperar from "./components/Recuperar"
@@ -43,15 +40,7 @@ function App() {
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="/carrito" element={ <Carrito /> } />
         <Route path="/pedido_completo" element={ <PedidoCompleto /> } />
-        <Route path="/Listado_Series" element={<ListadoSeries/>}/> 
-        <Route path="/Agregar_Serie" element={<AgregarSerie/>}/> 
-        <Route path="/DetallesOrden" element={<DetallesOrden/>}/> 
-        <Route path="/DatosDeRegistroUsuario" element={<DatosDeRegistroUsuario/>}/> 
-        <Route path="/CambiarContrasena" element={<CambiarContrasena/>}/> 
-        <Route path="/admin_order_detail" element={ <AdminOrderDetail /> } />
-        <Route path="/admin_orders" element={ <AdminOrders /> } />
-        <Route path="/admin_user_detail" element={ <AdminUserDetail /> } />
-        <Route path="/admin_users" element={ <AdminUsers /> } />
+        
         <Route path="/Formulario" element={ <Formulario /> } />
         <Route path="/Recuperar" element={ <Recuperar /> } />
         <Route path="/Registro" element={ <Registro /> } />
