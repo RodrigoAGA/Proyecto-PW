@@ -1,15 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Pie from './Pie';
 import Cabecera from './Cabecera';
 import './Parte1.css';
 
 function Detalle() {
+    const [cantidad, setCantidad] = useState(1);
+
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const tituloProducto = urlParams.get('titulo');
         const fabricanteProducto = urlParams.get('fabricante');
         const imagenSrc = urlParams.get('imagenSrc');
         const precioProducto = urlParams.get('precio');
+        const descripcionProducto = urlParams.get('description');
+        const caracteristicasProducto = urlParams.get('features') ? urlParams.get('features').split(', ') : [];
 
         if (tituloProducto && fabricanteProducto) {
             const detalleProducto = document.getElementById('detalleProducto');
@@ -28,7 +32,53 @@ function Detalle() {
         if (precioProducto) {
             precioElement.textContent = `S/ ${precioProducto}`;
         }
+
+        const descripcionElement = document.getElementById('descripcionProducto');
+        if (descripcionProducto) {
+            descripcionElement.textContent = descripcionProducto;
+        }
+
+        const caracteristicasElement = document.getElementById('caracteristicasProducto');
+        caracteristicasElement.innerHTML = '';
+        caracteristicasProducto.forEach(caracteristica => {
+            const li = document.createElement('li');
+            li.textContent = caracteristica;
+            caracteristicasElement.appendChild(li);
+        });
     }, []);
+
+    const añadirAlCarrito = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tituloProducto = urlParams.get('titulo');
+        const fabricanteProducto = urlParams.get('fabricante');
+        const imagenSrc = urlParams.get('imagenSrc');
+        const precioProducto = parseFloat(urlParams.get('precio'));
+
+        if (tituloProducto && fabricanteProducto && precioProducto) {
+            const nuevoProducto = {
+                id: new Date().getTime(), // Crear un ID único
+                nombre: tituloProducto,
+                precio: precioProducto,
+                cantidad: cantidad,
+                imagen: imagenSrc
+            };
+
+            const carritoActual = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+            carritoActual.push(nuevoProducto);
+            localStorage.setItem('productosCarrito', JSON.stringify(carritoActual));
+            
+            // Redirigir a la página del carrito
+            window.location.href = './carrito';
+        }
+    };
+
+    const aumentarCantidad = () => {
+        setCantidad(cantidad + 1);
+    };
+
+    const disminuirCantidad = () => {
+        setCantidad(cantidad > 1 ? cantidad - 1 : 1);
+    };
 
     return (
         <>
@@ -47,12 +97,12 @@ function Detalle() {
                     </div>
                     <div className="precdet">
                         <p id="precioProducto" className="preciodeta"></p>
-                        <button>AÑADIR AL CARRITO</button>
+                        <button onClick={añadirAlCarrito}>AÑADIR AL CARRITO</button>
                         <p className="cantideta">Cantidad:</p>
-                        <div>
-                            <span className="osas">-</span>
-                            <span className="uno">1</span>
-                            <span className="osas">+</span>
+                        <div className="cantidad-control">
+                            <span className="osas" onClick={disminuirCantidad}>-</span>
+                            <span className="uno">{cantidad}</span>
+                            <span className="osas" onClick={aumentarCantidad}>+</span>
                         </div>
                         <a href="">Ver métodos de envío disponibles</a>
                     </div>
@@ -61,20 +111,13 @@ function Detalle() {
             <div className="destex">
                 <p className="textodes">Descripción</p>
                 <p id="descripcionProducto" className="texto">
-                    From the Voltron franchise comes a new Mini Action Voltron Vehicle Force figure by Action Toys. This figure is highly articulated 
-                    and able to produce various poses from the series, along with being able to separate various parts to form vehicles. This Voltron 
-                    Vehicle Force toy figure is sure to be a great addition to any Voltron collection!
+                    {/* Este contenido se llenará dinámicamente */}
                 </p>
             </div>
             <div className="lista">
                 <p>Características del Producto:</p>
                 <ul id="caracteristicasProducto">
-                    <li>Mide 18 centímetros</li>
-                    <li>Hecho de PVC</li>
-                    <li>De la serie Voltron</li>
-                    <li>Artículo</li>
-                    <li>15 piezas distintas</li>
-                    <li>Combinable con otras figuras</li>
+                    {/* Este contenido se llenará dinámicamente */}
                 </ul>
             </div>
             <Pie />

@@ -1,47 +1,23 @@
-import React, { useEffect }  from 'react'
-import Pie from './Pie'
-import Cabecera from './Cabecera'
+import React, { useEffect, useState } from 'react';
+import Pie from './Pie';
+import Cabecera from './Cabecera';
 import { Link } from "react-router-dom";
 
 function Carrito() {
-
-  const [productosCarrito, setProductosCarrito] = React.useState(() => {
-    const savedCarrito = localStorage.getItem('productosCarrito');
-    return savedCarrito ? JSON.parse(savedCarrito) : [
-      {
-        id: 1,
-        nombre: 'Voltron Mini Action Voltron Vehicle Force Figure (Standard)',
-        precio: 69.00,
-        cantidad: 1,
-      },
-      {
-        id: 2,
-        nombre: 'Star Wars Collection: Darth Vader White (Special Christmas 2024 Disney Edition)',
-        precio: 65.00,
-        cantidad: 2,
-      },
-      {
-        id: 3,
-        nombre: 'Star Wars Collection: Darth Vader White (Special Christmas 2024 Disney Edition)',
-        precio: 65.00,
-        cantidad: 2,
-      },
-    ];
-  });
-
-  const [productosGuardados, setProductosGuardados] = React.useState(() => {
-    const savedGuardados = localStorage.getItem('productosGuardados');
-    return savedGuardados ? JSON.parse(savedGuardados) : [];
-  });
-  useEffect(() => {
-    localStorage.setItem('productosCarrito', JSON.stringify(productosCarrito));
-  }, [productosCarrito]);
+  const [productosCarrito, setProductosCarrito] = useState([]);
+  const [productosGuardados, setProductosGuardados] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('productosGuardados', JSON.stringify(productosGuardados));
-  }, [productosGuardados]);
+    const fetchProductosCarrito = async () => {
+      const response = await fetch('http://localhost:3080/api/carrito');
+      const data = await response.json();
+      setProductosCarrito(data);
+    };
+    fetchProductosCarrito();
+  }, []);
 
-  const handleEliminarProductoCarrito = (idProducto) => {
+  const handleEliminarProductoCarrito = async (idProducto) => {
+    await fetch(`http://localhost:3080/api/carrito/${idProducto}`, { method: 'DELETE' });
     setProductosCarrito(productosCarrito.filter((producto) => producto.id !== idProducto));
   };
 
@@ -61,15 +37,15 @@ function Carrito() {
     }
   };
 
-  const handleCambiarCantidad = (idProducto, nuevaCantidad) => {
+  const handleCambiarCantidad = async (idProducto, nuevaCantidad) => {
+    const response = await fetch(`http://localhost:3080/api/carrito/${idProducto}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cantidad: nuevaCantidad })
+    });
+    const data = await response.json();
     setProductosCarrito(
-      productosCarrito.map((producto) => {
-        if (producto.id === idProducto) {
-          return { ...producto, cantidad: nuevaCantidad };
-        } else {
-          return producto;
-        }
-      })
+      productosCarrito.map((producto) => (producto.id === idProducto ? data : producto))
     );
   };
 
@@ -113,7 +89,7 @@ function Carrito() {
                         onChange={(event) => handleCambiarCantidad(producto.id, parseInt(event.target.value))}
                       />
                     </td>
-                    <td>S/{producto.precio * producto.cantidad}</td>
+                    <td>S/{(producto.precio * producto.cantidad).toFixed(2)}</td>
                     <td>
                       <button onClick={() => handleEliminarProductoCarrito(producto.id)}>Eliminar</button>
                       <button onClick={() => handleGuardarParaDespues(producto.id)}>Guardar para después</button>
@@ -141,8 +117,6 @@ function Carrito() {
                 <tr>
                   <th>Producto</th>
                   <th>Precio</th>
-                  <th>Cantidad</th>
-                  <th>Subtotal</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -151,15 +125,6 @@ function Carrito() {
                   <tr key={producto.id}>
                     <td>{producto.nombre}</td>
                     <td>S/{producto.precio.toFixed(2)}</td>
-                    <td>
-                      <input
-                        type="number"
-                        min={1}
-                        value={producto.cantidad}
-                        onChange={(event) => handleCambiarCantidad(producto.id, parseInt(event.target.value))}
-                      />
-                    </td>
-                    <td>S/{producto.precio * producto.cantidad}</td>
                     <td>
                       <button onClick={() => handleMoverAlCarrito(producto.id)}>Mover al carrito</button>
                       <button onClick={() => handleEliminarProductoGuardado(producto.id)}>Eliminar</button>
@@ -170,12 +135,15 @@ function Carrito() {
             </table>
           )}
         </div>
-        <button><Link to="/checkout">Completar compra</Link> </button>
+        <div className="continuar-compra">
+          <Link to="/checkout">
+            <button disabled={productosCarrito.length === 0}>Continuar con la compra</button>
+          </Link>
+        </div>
       </div>
       <Pie />
     </>
-  )
+  );
 }
 
-
-export default Carrito
+export default Carrito;
