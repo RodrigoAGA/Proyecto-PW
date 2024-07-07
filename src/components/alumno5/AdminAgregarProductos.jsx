@@ -11,11 +11,11 @@ function AdminAgregarProductos() {
             <div class="sidebar">
                 <ul>
                     <li><a href="./admin_dashboard">Dashboard</a></li>
-                    <li><a href="#">Usuarios registrados</a></li>
+                    <li><a href="./ListaUsuarios">Usuarios registrados</a></li>
                     <li><a href="./admin_lista_productos">Productos</a></li>
-                    <li><a href="#">Órdenes</a></li>
+                    <li><a href="./ListadoOrdenesAdmin">Órdenes</a></li>
                     <li><a href="#">Productos más vendidos</a></li>
-                    <li><a href="#">Series</a></li>
+                    <li><a href="./ListadoSeries">Series</a></li>
                 </ul>
             </div>
             <div class="main-content">
