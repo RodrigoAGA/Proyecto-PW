@@ -22,7 +22,7 @@ const Recuperar = () => {
       });
 
       const data = await res.json();
-      console.log("Revise su correo para recuperar su contraseña."); // Aquí puedes manejar la respuesta del servidor
+      console.log("Revise su correo para recuperar su contraseña."); 
     } catch (err) {
       console.error(err);
     }
