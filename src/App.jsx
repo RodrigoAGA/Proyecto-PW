@@ -6,11 +6,11 @@ import PedidoCompleto from "./components/PedidoCompleto"
 import Detalle from "./components/Detalle"
 import Busqueda from "./components/Busqueda"
 // Componentes alumno 4
-import ListadoSeries from "./components/alumno4/ListadoSeries"
-import DetalleOrden from "./components/alumno4/DetalleOrden"
-import DatosRegistroUsuario from "./components/alumno4/DatosRegistroUsuario"
-import CambiarContrasena from "./components/alumno4/CambiarContrasena"
-import AgregarSerie from "./components/alumno4/AgregarSerie"
+import ListadoSeries from "./components/Alumno4/ListadoSeries"
+import DetalleOrden from "./components/Alumno4/DetalleOrden"
+import DatosRegistroUsuario from "./components/Alumno4/DatosRegistroUsuario"
+import CambiarContrasena from "./components/Alumno4/CambiarContrasena"
+import AgregarSerie from "./components/Alumno4/AgregarSerie"
 //
 
 import Formulario from "./components/Formulario"
