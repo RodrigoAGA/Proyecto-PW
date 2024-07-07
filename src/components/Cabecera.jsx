@@ -12,8 +12,8 @@ function Cabecera() {
         <a href="#Ofertas">Ofertas</a>
       </div>
       <div className="cuenta"> 
-        <button className="imagen">
-          <img src={compra} alt="" />
+        <button className="imagen" >
+          <img src={compra} alt=""/>
         </button>
         <a href="#Ayuda">Ayuda</a>
         <button className="perfil">Mi Cuenta</button> 
