@@ -1,63 +1,91 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Pie from "../Pie";
+import Cabecera from '../Cabecera';
+import "../Parte1.css";
 import '../styles/alumno4/DetalleOrden.css';
 
-const DetalleOrden = () => {
+function DetalleOrden() {
     const { id } = useParams();
-    const [order, setOrder] = useState(null);
-
+    const [orden, setOrden] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
     useEffect(() => {
-        // Simulación de obtención de datos de la orden desde una API
-        const orderData = {
-            id: id,
-            user: 'Juan Pérez',
-            date: '2024-07-07',
-            status: 'En proceso',
-            items: [
-                { name: 'Producto 1', quantity: 2, price: 10 },
-                { name: 'Producto 2', quantity: 1, price: 20 }
-            ],
-            total: 40
-        };
-        setOrder(orderData);
+      const cargarDatosOrden = async () => {
+        try {
+          const response = await fetch('/data/ordenes.json');
+          if (!response.ok) {
+            throw new Error('Error al cargar los datos de la orden');
+          }
+          const data = await response.json();
+          const ordenEncontrada = data.find(orden => orden.id === id);
+          if (!ordenEncontrada) {
+            throw new Error('Orden no encontrada');
+          }
+          setOrden(ordenEncontrada);
+          setLoading(false);
+        } catch (error) {
+          setError(error.message);
+          setLoading(false);
+        }
+      };
+  
+      cargarDatosOrden();
     }, [id]);
-
+  
+    if (loading) {
+      return <p>Cargando...</p>;
+    }
+  
+    if (error) {
+      return <p>Error: {error}</p>;
+    }
+  
     return (
-        <div className="detalle-orden">
-            <header>
-                <h1>Detalle de Orden</h1>
-            </header>
-            <aside className="admin-menu">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Usuarios registrados</li>
-                    <li>Productos</li>
-                    <li>Órdenes</li>
-                    <li>Productos más vendidos</li>
-                    <li>Series</li>
-                </ul>
-            </aside>
-            <main className="content">
-                {order ? (
-                    <div className="order-details">
-                        <p><strong>ID de Orden:</strong> {order.id}</p>
-                        <p><strong>Usuario:</strong> {order.user}</p>
-                        <p><strong>Fecha:</strong> {order.date}</p>
-                        <p><strong>Estado:</strong> {order.status}</p>
-                        <h2>Items</h2>
-                        <ul>
-                            {order.items.map((item, index) => (
-                                <li key={index}>{item.name} - Cantidad: {item.quantity} - Precio: ${item.price}</li>
-                            ))}
-                        </ul>
-                        <p><strong>Total:</strong> ${order.total}</p>
-                    </div>
-                ) : (
-                    <p>Cargando...</p>
-                )}
-            </main>
+      <>
+        <Cabecera />
+        <div className="admin-container">
+          <div className="sidebar">
+            <h2>Mi Cuenta</h2>
+            <ul>
+              <li><a href="/ordenes-recientes">Órdenes Recientes</a></li>
+              <li><a href="/datos-registro">Datos de Registro</a></li>
+              <li><a href="/cambiar-password">Cambiar Password</a></li>
+            </ul>
+          </div>
+          <div className="content">
+            <h1>Detalle de Orden</h1>
+            <div className="detalle-orden">
+              <h2>Número de Orden: {orden.id}</h2>
+              <p>Fecha: {new Date(orden.fecha).toLocaleDateString()}</p>
+              <p>Estado: {orden.estado}</p>
+              <h3>Productos</h3>
+              <table className="detalle-orden-tabla">
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {orden.productos.map((producto, index) => (
+                    <tr key={index}>
+                      <td>{producto.nombre}</td>
+                      <td>{producto.cantidad}</td>
+                      <td>${producto.precio.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <h3>Total: ${orden.total.toFixed(2)}</h3>
+            </div>
+          </div>
         </div>
+        <Pie />
+      </>
     );
-};
-
-export default DetalleOrden;
+  }
+  
+  export default DetalleOrden;

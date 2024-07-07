@@ -1,92 +1,134 @@
 import React, { useState } from 'react';
+import Pie from "../Pie";
+import Cabecera from '../Cabecera';
+import "../Parte1.css";
 import '../styles/alumno4/AgregarSerie.css';
 
-const AgregarSerie = () => {
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [products, setProducts] = useState([
-        { id: 1, description: 'Manga Dragon Ball Vol 1' },
-        { id: 2, description: 'Manga Dragon Ball Vol 2' }
-    ]);
-
-    const handleAddImage = () => {
-        // Lógica para agregar imagen
+function AgregarSerie() {
+    const [nombre, setNombre] = useState("");
+    const [descripcion, setDescripcion] = useState("");
+    const [temporada, setTemporada] = useState("");
+    const [genero, setGenero] = useState("");
+    const [imagen, setImagen] = useState(null);
+    const [productos, setProductos] = useState([]);
+    const [productoActual, setProductoActual] = useState("");
+  
+    const manejarImagen = (e) => {
+      setImagen(e.target.files[0]);
     };
-
-    const handleSave = () => {
-        // Lógica para guardar la serie
+  
+    const agregarProducto = () => {
+      setProductos([...productos, productoActual]);
+      setProductoActual("");
     };
-
-    const handleRemoveProduct = (id) => {
-        setProducts(products.filter(product => product.id !== id));
+  
+    const removerProducto = (index) => {
+      setProductos(productos.filter((_, i) => i !== index));
     };
-
+  
+    const manejarSubmit = async (e) => {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("nombre", nombre);
+      formData.append("descripcion", descripcion);
+      formData.append("temporada", temporada);
+      formData.append("genero", genero);
+      formData.append("imagen", imagen);
+      formData.append("productos", JSON.stringify(productos));
+  
+      try {
+        const response = await fetch("/api/series", {
+          method: "POST",
+          body: formData,
+        });
+        if (!response.ok) {
+          throw new Error("Error al agregar la serie");
+        }
+        alert("Serie agregada exitosamente");
+        // Resetear el formulario
+        setNombre("");
+        setDescripcion("");
+        setTemporada("");
+        setGenero("");
+        setImagen(null);
+        setProductos([]);
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error al agregar la serie");
+      }
+    };
+  
     return (
-        <div className="agregar-serie">
-            <header>
-                <h1>Pantalla de Mantenimiento de Serie (Agregar / Detalle)</h1>
-            </header>
-            <aside className="admin-menu">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Usuarios registrados</li>
-                    <li>Productos</li>
-                    <li>Órdenes</li>
-                    <li>Productos más vendidos</li>
-                    <li>Series</li>
+      <>
+        <Cabecera />
+        <div className="admin-container">
+          <div className="sidebar">
+            <h2>Admin</h2>
+            <ul>
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/usuarios-registrados">Usuarios registrados</a></li>
+              <li><a href="/productos">Productos</a></li>
+              <li><a href="/ordenes">Órdenes</a></li>
+              <li><a href="/productos-mas-vendidos">Productos más vendidos</a></li>
+              <li><a href="/series">Series</a></li>
+            </ul>
+          </div>
+          <div className="content">
+            <h1>Agregar Serie</h1>
+            <form onSubmit={manejarSubmit} className="agregar-serie-form">
+              <div className="form-group">
+                <label>Agregar Serie</label>
+                <div className="image-upload">
+                  {imagen && (
+                    <img
+                      src={URL.createObjectURL(imagen)}
+                      alt="Imagen de la serie"
+                      className="preview-image"
+                    />
+                  )}
+                  <input type="file" onChange={manejarImagen} />
+                  <button type="button" className="upload-btn">Agregar Imagen</button>
+                </div>
+              </div>
+              <div className="form-group">
+                <label>Nombre</label>
+                <input
+                  type="text"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Descripción</label>
+                <textarea
+                  value={descripcion}
+                  onChange={(e) => setDescripcion(e.target.value)}
+                />
+              </div>
+              <div className="form-group">
+                <label>Productos en la serie</label>
+                <input
+                  type="text"
+                  value={productoActual}
+                  onChange={(e) => setProductoActual(e.target.value)}
+                />
+                <button type="button" onClick={agregarProducto} className="add-product-btn">+</button>
+                <ul className="product-list">
+                  {productos.map((producto, index) => (
+                    <li key={index} className="product-item">
+                      {producto}
+                      <button type="button" onClick={() => removerProducto(index)} className="remove-product-btn">Remover</button>
+                    </li>
+                  ))}
                 </ul>
-            </aside>
-            <main className="content">
-                <div className="form">
-                    <div className="form-group">
-                        <label>Agregar Serie</label>
-                        <div className="image-placeholder" onClick={handleAddImage}>
-                            <p>Agregar Imagen</p>
-                        </div>
-                    </div>
-                    <div className="form-group">
-                        <label>Nombre</label>
-                        <input
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Descripción</label>
-                        <textarea
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                        />
-                    </div>
-                </div>
-                <div className="products">
-                    <h2>Productos en la serie</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Descripción</th>
-                                <th>Acción</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {products.map(product => (
-                                <tr key={product.id}>
-                                    <td>{product.id}</td>
-                                    <td>{product.description}</td>
-                                    <td>
-                                        <button onClick={() => handleRemoveProduct(product.id)}>Remover</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <button className="save-button" onClick={handleSave}>Guardar</button>
-            </main>
+              </div>
+              <button type="submit" className="submit-btn">Guardar</button>
+            </form>
+          </div>
         </div>
+        <Pie />
+      </>
     );
-};
-
-export default AgregarSerie;
+  }
+  
+  export default AgregarSerie;

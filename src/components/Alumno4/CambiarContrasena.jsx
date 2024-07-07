@@ -1,61 +1,98 @@
 import React, { useState } from 'react';
+import Pie from "../Pie";
+import Cabecera from '../Cabecera';
+import "../Parte1.css";
 import '../styles/alumno4/CambiarContrasena.css';
 
-const CambiarContrasena = () => {
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-
-    const handleChangePassword = () => {
-        // Lógica para cambiar la contraseña
+function CambiarContrasena() {
+    const [contrasenaActual, setContrasenaActual] = useState("");
+    const [nuevaContrasena, setNuevaContrasena] = useState("");
+    const [confirmarContrasena, setConfirmarContrasena] = useState("");
+  
+    const manejarSubmit = async (e) => {
+      e.preventDefault();
+  
+      if (nuevaContrasena !== confirmarContrasena) {
+        alert("Las contraseñas no coinciden");
+        return;
+      }
+  
+      const payload = {
+        contrasenaActual,
+        nuevaContrasena,
+      };
+  
+      try {
+        const response = await fetch("/api/cambiar-contrasena", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) {
+          throw new Error("Error al cambiar la contraseña");
+        }
+        alert("Contraseña cambiada exitosamente");
+        // Resetear el formulario
+        setContrasenaActual("");
+        setNuevaContrasena("");
+        setConfirmarContrasena("");
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Error al cambiar la contraseña");
+      }
     };
-
+  
     return (
-        <div className="cambiar-contrasena">
-            <header>
-                <h1>Cambiar Contraseña</h1>
-            </header>
-            <aside className="admin-menu">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Usuarios registrados</li>
-                    <li>Productos</li>
-                    <li>Órdenes</li>
-                    <li>Productos más vendidos</li>
-                    <li>Series</li>
-                </ul>
-            </aside>
-            <main className="content">
-                <div className="form">
-                    <div className="form-group">
-                        <label>Contraseña Actual</label>
-                        <input
-                            type="password"
-                            value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Nueva Contraseña</label>
-                        <input
-                            type="password"
-                            value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Confirmar Nueva Contraseña</label>
-                        <input
-                            type="password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                    </div>
-                    <button className="change-button" onClick={handleChangePassword}>Cambiar Contraseña</button>
-                </div>
-            </main>
+      <>
+        <Cabecera />
+        <div className="admin-container">
+          <div className="sidebar">
+            <h2>Mi Cuenta</h2>
+            <ul>
+              <li><a href="/ordenes-recientes">Órdenes Recientes</a></li>
+              <li><a href="/datos-registro">Datos de Registro</a></li>
+              <li><a href="/cambiar-password">Cambiar Password</a></li>
+            </ul>
+          </div>
+          <div className="content">
+            <h1>Cambiar Password</h1>
+            <form onSubmit={manejarSubmit} className="cambiar-contrasena-form">
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Actual"
+                  value={contrasenaActual}
+                  onChange={(e) => setContrasenaActual(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Nuevo"
+                  value={nuevaContrasena}
+                  onChange={(e) => setNuevaContrasena(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  placeholder="Repetir"
+                  value={confirmarContrasena}
+                  onChange={(e) => setConfirmarContrasena(e.target.value)}
+                  required
+                />
+              </div>
+              <button type="submit" className="submit-btn">Cambiar</button>
+            </form>
+          </div>
         </div>
+        <Pie />
+      </>
     );
-};
-
-export default CambiarContrasena;
+  }
+  
+  export default CambiarContrasena;
