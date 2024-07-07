@@ -87,7 +87,8 @@ body {
   width: 90%;
   border-radius: 5px;
   position: relative;
-  color: #000000;
+  color: #000000 !important;
+
 }
 
 .search-input-box input {
@@ -107,7 +108,7 @@ body {
   width: 10%;
   border-radius: 5px;
   position: relative;
-  color: #868686;
+  color: #868686 !important;
 }
 
 .search-button button {
@@ -917,4 +918,22 @@ th {
 }
 .formulario-recuperar-contraseña{
   display:none;
+}
+
+.image-cuadrado {
+  width: 100%;
+  height: 100%;
+}
+
+.image-rect {
+  width: 100%;
+  height: 100%;
+}
+
+
+.container-cuadrado,
+.container-cuadrado2,
+.container-rect,
+.container-rect2 {
+  margin-bottom: 20px;
 }
