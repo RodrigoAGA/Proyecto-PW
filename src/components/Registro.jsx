@@ -31,7 +31,7 @@ const Registro = () => {
       });
 
       const data = await res.json();
-      console.log(data); // Aquí puedes manejar la respuesta del servidor
+      console.log(data); 
     } catch (err) {
       console.error(err);
     }
