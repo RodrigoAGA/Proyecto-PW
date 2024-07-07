@@ -478,6 +478,7 @@ color: #000000;
 
 .detalle-imagen {
   display: flex;
+  margin-left: 10.5%;
 }
 
 .detalle-prod{
