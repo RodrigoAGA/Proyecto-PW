@@ -10,14 +10,10 @@ const Checkout = () => {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    const fetchProductosCarrito = async () => {
-      const response = await fetch('http://localhost:3080/api/carrito');
-      const data = await response.json();
-      setProductosCarrito(data);
-      const totalCarrito = data.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
-      setTotal(totalCarrito);
-    };
-    fetchProductosCarrito();
+    const productosGuardados = JSON.parse(localStorage.getItem('checkoutProductosCarrito')) || [];
+    setProductosCarrito(productosGuardados);
+    const totalCarrito = productosGuardados.reduce((total, producto) => total + (producto.precio * producto.cantidad), 0);
+    setTotal(totalCarrito);
   }, []);
 
   const handleCrearPedido = async () => {
