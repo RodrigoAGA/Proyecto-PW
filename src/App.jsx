@@ -5,11 +5,13 @@ import Carrito from "./components/Carrito"
 import PedidoCompleto from "./components/PedidoCompleto"
 import Detalle from "./components/Detalle"
 import Busqueda from "./components/Busqueda"
-import ListadoSeries from "./components/1Listado_Serie_A"
-import AgregarSerie from "./components/2Agregar_Serie_Admin"
-import DetallesOrden from "./components/3Detalles_De_Orden_Usuario_Registrado"
-import DatosDeRegistroUsuario from "./components/4Datos_De_Registro_Usuario_Registrado"
-import CambiarContrasena from "./components/5Cambiar_Contraseña"
+// Componentes alumno 4
+import ListadoSeries from "./components/alumno4/ListadoSeries"
+import DetalleOrden from "./components/alumno4/DetalleOrden"
+import DatosRegistroUsuario from "./components/alumno4/DatosRegistroUsuario"
+import CambiarContrasena from "./components/alumno4/CambiarContrasena"
+import AgregarSerie from "./components/alumno4/AgregarSerie"
+//
 import AdminOrderDetail from "./components/AdminOrderDetail"
 import AdminOrders from "./components/AdminOrders"
 import AdminUserDetail  from "./components/AdminUserDetail"
@@ -22,6 +24,12 @@ import Recuperar from "./components/Recuperar"
 import AdminDashboard from './components/alumno5/AdminDashboard'
 import AdminAgregarProductos from "./components/alumno5/AdminAgregarProductos"
 import AdminListaProductos from "./components/alumno5/AdminListaProductos"
+
+// Componentes de alumno 6
+import ListaUsuarios from "./components/alumno6/ListaUsuarios";
+import DetalleUsuarioAdmin from "./components/alumno6/DetalleUsuarioAdmin";
+import ListadoOrdenesAdmin from "./components/alumno6/ListadoOrdenesAdmin";
+import DetalleOrdenAdmin from "./components/alumno6/DetalleOrdenAdmin";
 
 function App() {
   return (
@@ -47,11 +55,22 @@ function App() {
         <Route path="/Formulario" element={ <Formulario /> } />
         <Route path="/Recuperar" element={ <Recuperar /> } />
         <Route path="/Registro" element={ <Registro /> } />
-        
+        {/* Rutas de alumno 4 */}
+        <Route path="/ListadoSeries" element={<ListadoSeries/>}/> 
+        <Route path="/AgregarSerie" element={<AgregarSerie/>}/> 
+        <Route path="/DetalleOrden/:id" element={<DetalleOrden/>}/> 
+        <Route path="/DatosRegistroUsuario" element={<DatosRegistroUsuario/>}/>  
+        <Route path="/CambiarContrasena" element={<CambiarContrasena/>}/> 
         {/* Rutas de alumno 5 */}
         <Route path="/admin_dashboard" element={ <AdminDashboard /> } />
         <Route path="/admin_lista_productos" element={ <AdminListaProductos /> } />
         <Route path="/admin_agregar_productos" element={ <AdminAgregarProductos /> } />
+
+        {/* Rutas de alumno 6 */}
+        <Route path="/DetalleOrdenAdmin/:id" element={ <DetalleOrdenAdmin /> } />
+        <Route path="/ListadoOrdenesAdmin" element={ <ListadoOrdenesAdmin /> } />
+        <Route path="/DetalleUsuarioAdmin/:id" element={ <DetalleUsuarioAdmin /> } />
+        <Route path="/ListaUsuarios" element={ <ListaUsuarios /> } />
       
       </Routes>
     </div>
