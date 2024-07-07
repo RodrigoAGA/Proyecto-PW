@@ -13,7 +13,13 @@ function Carrito() {
       const data = await response.json();
       setProductosCarrito(data);
     };
+    const cargarProductosDesdeLocalStorage = () => {
+      const productosGuardados = JSON.parse(localStorage.getItem('productosCarrito')) || [];
+      setProductosCarrito(prevProductos => [...prevProductos, ...productosGuardados]);
+      localStorage.removeItem('productosCarrito');
+    };
     fetchProductosCarrito();
+    cargarProductosDesdeLocalStorage();
   }, []);
 
   const handleEliminarProductoCarrito = async (idProducto) => {
