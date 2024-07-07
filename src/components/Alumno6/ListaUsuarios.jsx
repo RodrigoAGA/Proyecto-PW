@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/alumno6/ListaUsuarios.css';
+import '../styles/Alumno6/ListaUsuarios.css';
 
 const ListaUsuarios = () => {
     const [users, setUsers] = useState([]);
