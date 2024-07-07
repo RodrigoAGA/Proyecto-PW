@@ -23,10 +23,10 @@ import AdminAgregarProductos from "./components/alumno5/AdminAgregarProductos"
 import AdminListaProductos from "./components/alumno5/AdminListaProductos"
 
 // Componentes de alumno 6
-import ListaUsuarios from "./components/alumno6/ListaUsuarios";
-import DetalleUsuarioAdmin from "./components/alumno6/DetalleUsuarioAdmin";
-import ListadoOrdenesAdmin from "./components/alumno6/ListadoOrdenesAdmin";
-import DetalleOrdenAdmin from "./components/alumno6/DetalleOrdenAdmin";
+import ListaUsuarios from "./components/Alumno6/ListaUsuarios";
+import DetalleUsuarioAdmin from "./components/Alumno6/DetalleUsuarioAdmin";
+import ListadoOrdenesAdmin from "./components/Alumno6/ListadoOrdenesAdmin";
+import DetalleOrdenAdmin from "./components/Alumno6/DetalleOrdenAdmin";
 
 function App() {
   return (
