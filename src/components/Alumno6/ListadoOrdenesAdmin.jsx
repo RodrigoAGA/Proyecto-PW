@@ -1,60 +1,111 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import '../styles/Alumno6/ListadoOrdenesAdmin.css';
+import Pie from "../Pie";
+import Cabecera from '../Cabecera';
+import "../Parte1.css";
 
-const ListadoOrdenesAdmin = () => {
-    const [orders, setOrders] = useState([]);
-
+function ListadoOrdenesAdmin() {
+    const [ordenes, setOrdenes] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [busqueda, setBusqueda] = useState('');
+  
     useEffect(() => {
-        // Simulación de obtención de datos de las órdenes desde una API
-        const ordersData = [
-            { id: 1, user: 'Juan Pérez', date: '2024-07-01', total: 30, status: 'En proceso' },
-            { id: 2, user: 'María López', date: '2024-07-02', total: 50, status: 'Completada' },
-            { id: 3, user: 'Carlos García', date: '2024-07-03', total: 70, status: 'En proceso' }
-        ];
-        setOrders(ordersData);
+      const cargarDatosOrdenes = async () => {
+        try {
+          const response = await fetch('/data/ordenes.json');
+          if (!response.ok) {
+            throw new Error('Error al cargar los datos de las órdenes');
+          }
+          const data = await response.json();
+          setOrdenes(data);
+          setLoading(false);
+        } catch (error) {
+          setError(error.message);
+          setLoading(false);
+        }
+      };
+  
+      cargarDatosOrdenes();
     }, []);
-
-    return (
-        <div className="listado-ordenes-admin">
-            <header>
-                <h1>Listado de Órdenes (Admin)</h1>
-            </header>
-            <aside className="admin-menu">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Usuarios registrados</li>
-                    <li>Productos</li>
-                    <li>Órdenes</li>
-                    <li>Productos más vendidos</li>
-                    <li>Series</li>
-                </ul>
-            </aside>
-            <main className="content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Usuario</th>
-                            <th>Fecha</th>
-                            <th>Total</th>
-                            <th>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {orders.map((order) => (
-                            <tr key={order.id}>
-                                <td>{order.id}</td>
-                                <td>{order.user}</td>
-                                <td>{order.date}</td>
-                                <td>${order.total}</td>
-                                <td>{order.status}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </main>
-        </div>
+  
+    const handleBusquedaChange = (e) => {
+      setBusqueda(e.target.value);
+    };
+  
+    const ordenesFiltradas = ordenes.filter(orden =>
+      orden.direccionEnvio.toLowerCase().includes(busqueda.toLowerCase()) ||
+      orden.id.toString().includes(busqueda)
     );
-};
-
-export default ListadoOrdenesAdmin;
+  
+    if (loading) {
+      return <p>Cargando...</p>;
+    }
+  
+    if (error) {
+      return <p>Error: {error}</p>;
+    }
+  
+    return (
+      <>
+        <Cabecera />
+        <div className="admin-container">
+          <div className="sidebar">
+            <h2>Admin</h2>
+            <ul>
+              <li><Link to="/dashboard">Dashboard</Link></li>
+              <li><Link to="/usuarios-registrados">Usuarios registrados</Link></li>
+              <li><Link to="/productos">Productos</Link></li>
+              <li><Link to="/ordenes">Órdenes</Link></li>
+              <li><Link to="/productos-mas-vendidos">Productos más vendidos</Link></li>
+              <li><Link to="/series">Series</Link></li>
+            </ul>
+          </div>
+          <div className="content">
+            <h1>Órdenes</h1>
+            <div className="lista-ordenes">
+              <input
+                type="text"
+                placeholder="Buscar por dirección de envío o nro de orden..."
+                className="busqueda-ordenes"
+                value={busqueda}
+                onChange={handleBusquedaChange}
+              />
+              <table className="tabla-ordenes">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Fecha de Orden</th>
+                    <th>Total</th>
+                    <th>Correo</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ordenesFiltradas.map((orden) => (
+                    <tr key={orden.id}>
+                      <td>{orden.id}</td>
+                      <td>{orden.direccionEnvio.split("\n")[0]}</td>
+                      <td>{new Date(orden.fecha).toLocaleDateString()}</td>
+                      <td>S/ {orden.total.toFixed(2)}</td>
+                      <td>{orden.direccionEnvio.split("\n")[2]}</td>
+                      <td>{orden.estado}</td>
+                      <td>
+                        <Link to={`/orden/${orden.id}`}>Ver</Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <Pie />
+      </>
+    );
+  }
+  
+  export default ListadoOrdenesAdmin;

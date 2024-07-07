@@ -1,63 +1,103 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import '../styles/Alumno6/DetalleOrdenAdmin.css';
+import Pie from "../Pie";
+import Cabecera from '../Cabecera';
+import "../Parte1.css";
 
-const DetalleOrdenAdmin = () => {
+function DetalleOrdenAdmin() {
     const { id } = useParams();
-    const [order, setOrder] = useState(null);
-
+    const [orden, setOrden] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+  
     useEffect(() => {
-        // Simulación de obtención de datos de la orden desde una API
-        const orderData = {
-            id: id,
-            user: 'Juan Pérez',
-            date: '2024-07-07',
-            status: 'En proceso',
-            items: [
-                { name: 'Producto 1', quantity: 2, price: 10 },
-                { name: 'Producto 2', quantity: 1, price: 20 }
-            ],
-            total: 40
-        };
-        setOrder(orderData);
+      const cargarDatosOrden = async () => {
+        try {
+          const response = await fetch('/data/ordenes.json');
+          if (!response.ok) {
+            throw new Error('Error al cargar los datos de la orden');
+          }
+          const data = await response.json();
+          const ordenEncontrada = data.find(orden => orden.id === id);
+          if (!ordenEncontrada) {
+            throw new Error('Orden no encontrada');
+          }
+          setOrden(ordenEncontrada);
+          setLoading(false);
+        } catch (error) {
+          setError(error.message);
+          setLoading(false);
+        }
+      };
+  
+      cargarDatosOrden();
     }, [id]);
-
+  
+    if (loading) {
+      return <p>Cargando...</p>;
+    }
+  
+    if (error) {
+      return <p>Error: {error}</p>;
+    }
+  
     return (
-        <div className="detalle-orden-admin">
-            <header>
-                <h1>Detalle de Orden (Admin)</h1>
-            </header>
-            <aside className="admin-menu">
-                <ul>
-                    <li>Dashboard</li>
-                    <li>Usuarios registrados</li>
-                    <li>Productos</li>
-                    <li>Órdenes</li>
-                    <li>Productos más vendidos</li>
-                    <li>Series</li>
-                </ul>
-            </aside>
-            <main className="content">
-                {order ? (
-                    <div className="order-details">
-                        <p><strong>ID de Orden:</strong> {order.id}</p>
-                        <p><strong>Usuario:</strong> {order.user}</p>
-                        <p><strong>Fecha:</strong> {order.date}</p>
-                        <p><strong>Estado:</strong> {order.status}</p>
-                        <h2>Items</h2>
-                        <ul>
-                            {order.items.map((item, index) => (
-                                <li key={index}>{item.name} - Cantidad: {item.quantity} - Precio: ${item.price}</li>
-                            ))}
-                        </ul>
-                        <p><strong>Total:</strong> ${order.total}</p>
-                    </div>
-                ) : (
-                    <p>Cargando...</p>
-                )}
-            </main>
+      <>
+        <Cabecera />
+        <div className="admin-container">
+          <div className="sidebar">
+            <h2>Admin</h2>
+            <ul>
+              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/usuarios-registrados">Usuarios registrados</a></li>
+              <li><a href="/productos">Productos</a></li>
+              <li><a href="/ordenes">Órdenes</a></li>
+              <li><a href="/productos-mas-vendidos">Productos más vendidos</a></li>
+              <li><a href="/series">Series</a></li>
+            </ul>
+          </div>
+          <div className="content">
+            <h1>Detalles de Orden Nro {orden.id}</h1>
+            <div className="detalle-orden">
+              <h2>Datos de compra</h2>
+              <div className="orden-datos-compra">
+                <div>
+                  <h3>Dirección de Envío</h3>
+                  <p>{orden.direccionEnvio}</p>
+                </div>
+                <div>
+                  <h3>Pago</h3>
+                  <p>{orden.metodoPago}</p>
+                  <p>Tarjeta de Crédito que termina en: {orden.terminaEn}</p>
+                </div>
+              </div>
+              <h2>Método de Envío</h2>
+              <div className="orden-metodo-envio">
+                <p>{orden.metodoEnvio}</p>
+              </div>
+              <h2>Items en Pedido:</h2>
+              <ul className="orden-items">
+                {orden.productos.map((producto, index) => (
+                  <li key={index}>
+                    {producto.cantidad}x {producto.nombre} - S/ {producto.precio.toFixed(2)}
+                  </li>
+                ))}
+              </ul>
+              <h2>Resumen de Orden</h2>
+              <div className="orden-resumen">
+                <p>Subtotal: S/ {orden.subtotal.toFixed(2)}</p>
+                <p>Envío: S/ {orden.envio.toFixed(2)}</p>
+                <p>Impuestos: S/ {orden.impuestos.toFixed(2)}</p>
+                <p>Total: S/ {orden.total.toFixed(2)}</p>
+              </div>
+              <button className="btn-cancelar">Cancelar Pedido</button>
+            </div>
+          </div>
         </div>
+        <Pie />
+      </>
     );
-};
-
-export default DetalleOrdenAdmin;
+  }
+  
+  export default DetalleOrdenAdmin;
