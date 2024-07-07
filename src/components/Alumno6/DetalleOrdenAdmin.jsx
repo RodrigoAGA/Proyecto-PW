@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styles/alumno6/DetalleOrdenAdmin.css';
+import '../styles/Alumno6/DetalleOrdenAdmin.css';
 
 const DetalleOrdenAdmin = () => {
     const { id } = useParams();
