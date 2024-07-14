@@ -19,22 +19,19 @@ function Inicio() {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setProductsData(data);
+        setProductsData(data.products);
 
-        // Obtener los productos únicos por marca
-        const uniqueBrands = Array.from(new Set(data.map(product => product.brand)));
+        const uniqueBrands = Array.from(new Set(data.products.map(product => product.brand)));
         const brandItems = uniqueBrands.slice(0, 3).map(brand => {
-          const product = data.find(item => item.brand === brand);
+          const product = data.products.find(item => item.brand === brand);
           return product;
         });
         setUniqueBrandItems(brandItems);
 
-        // Obtener los 10 últimos productos
-        const latest = data.slice(-10);
+        const latest = data.products.slice(-10);
         setLatestItems(latest);
 
-        // Obtener los productos más recientes
-        const recent = data.slice(0, 5); // Solo 5 productos
+        const recent = data.products.slice(0, 5);
         setRecentItems(recent);
 
         setLoading(false);
