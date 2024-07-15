@@ -12,12 +12,15 @@ function Inicio() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/data/products.json')
-      .then(response => response.json())
-      .then(data => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('http://localhost:3080/api/inicio');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
         setProductsData(data.products);
 
-        // Obtener los productos únicos por marca
         const uniqueBrands = Array.from(new Set(data.products.map(product => product.brand)));
         const brandItems = uniqueBrands.slice(0, 3).map(brand => {
           const product = data.products.find(item => item.brand === brand);
@@ -25,32 +28,24 @@ function Inicio() {
         });
         setUniqueBrandItems(brandItems);
 
-        // Obtener los 10 últimos productos
-        const latest = data.products.slice(-10);
+        const latest = data.products.slice(-10).reverse();
         setLatestItems(latest);
 
-        // Obtener los productos más recientes
-        const recent = data.products.slice(0, 5); // Solo 5 productos
+        const recent = data.products.slice(0, 5);
         setRecentItems(recent);
 
         setLoading(false);
-      })
-      .catch(error => {
+      } catch (error) {
         setError(error.message);
         setLoading(false);
-      });
+      }
+    };
+
+    fetchProducts();
   }, []);
 
-  const handleLearnMore = (item) => {
-    const queryParams = new URLSearchParams({
-      titulo: item.name,
-      fabricante: item.brand,
-      imagenSrc: item.image,
-      precio: item.price,
-      description: item.description,
-      features: item.features.join(", ")
-    }).toString();
-    window.location.href = `./detalle?${queryParams}`;
+  const handleLearnMore = (id) => {
+    window.location.href = `./detalle?id=${encodeURIComponent(id)}`;
   };
 
   return (
@@ -79,7 +74,7 @@ function Inicio() {
               </div>
               <div className="info-cuadrado">
                 <p>{`Colección de ${item.brand}`}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))
@@ -94,7 +89,7 @@ function Inicio() {
               </div>
               <div className="info-rect">
                 <p>{item.name}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))}
@@ -107,7 +102,7 @@ function Inicio() {
               </div>
               <div className="info-rect">
                 <p>{item.name}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))}
@@ -128,7 +123,7 @@ function Inicio() {
               </div>
               <div className="info-rect">
                 <p>{item.name}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))}

@@ -18,23 +18,34 @@ const Registro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch('http://localhost:3080/api/registro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: formData.usuario,
-          email: formData.email,
-          password: formData.password,
+          nombre: formData.nombre,
+          usuario: formData.usuario,
+          correo: formData.email,
+          contra: formData.password,
         }),
       });
 
       const data = await res.json();
-      console.log(data); 
+      console.log(data);
+
+      if (res.ok) {
+        window.location.href = './Formulario';
+      } else {
+        console.error(data.msg);
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Error del servidor:', err);
     }
+  };
+
+  const handleCancel = () => {
+    window.location.href = './Formulario';
   };
 
   return (
@@ -43,8 +54,7 @@ const Registro = () => {
       <div className="contenedor-todo">
         <div className="caja-trasera">
           <div className="caja-trasera-login">
-            <h3></h3>
-            <p>Iniciar sesión para </p>
+            <p>Iniciar sesión para</p>
             <a href="./Formulario">Iniciar Sesión</a>
             <br />
             <a href="/Recuperar">¿Olvido su contraseña?</a>
@@ -59,7 +69,6 @@ const Registro = () => {
           </div>
         </div>
 
-        {/* Formularios */}
         <div className="contenedor-login-registro">
           <form onSubmit={handleSubmit} className="formulario-login">
             <h2>Registrarse</h2>
@@ -96,7 +105,7 @@ const Registro = () => {
               required
             />
             <button type="submit" id="enviar">Enviar</button>
-            <button type="reset" id="cancelar">Cancelar</button>
+            <button type="button" id="cancelar" onClick={handleCancel}>Cancelar</button>
           </form>
         </div>
       </div>

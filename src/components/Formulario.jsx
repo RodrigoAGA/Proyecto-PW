@@ -16,19 +16,30 @@ const Formulario = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/login', {
+      const res = await fetch('http://localhost:3080/api/formulario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          correo: formData.email,
+          contra: formData.password
+        }),
       });
 
-      const data = await res.json();
-      console.log("bienvenido"); 
+      if (!res.ok) {
+        const data = await res.json();
+        console.error(data.msg);
+      } else {
+        window.location.href = '/DatosRegistroUsuario'; 
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Error del servidor:', err);
     }
+  };
+
+  const handleCancel = () => {
+    window.location.href = './';
   };
 
   return (
@@ -37,17 +48,17 @@ const Formulario = () => {
       <div className="contenedor-todo">
         <div className="caja-trasera">
           <div className="caja-trasera-login">
-            <h3>¿Ya tiene una c     </h3>
-            <p>Iniciar sesión para ingresa  </p>
-            <button id="btn-iniciar-sesion" >Iniciar Sesión</button>
-            <a href="./Recuperar">¿</a>
+            <h3>¿Ya tiene una cuenta?</h3>
+            <p>Iniciar sesión para ingresar</p>
+            <button id="btn-iniciar-sesion">Iniciar Sesión</button>
+            <a href="./Recuperar">¿Olvidó su contraseña?</a>
           </div>
           <div className="caja-trasera-registro">
             <h3>¿Aún no tiene cuenta?</h3>
-            <p>Registrese para ingresar.</p>
+            <p>Regístrese para ingresar.</p>
             <a href="./Registro">Registro</a>
             <br />
-            <a href="./Recuperar">¿Olvido su contraseña?</a>
+            <a href="./Recuperar">¿Olvidó su contraseña?</a>
           </div>
         </div>
 
@@ -58,7 +69,7 @@ const Formulario = () => {
             <input 
               type="email" 
               name="email" 
-              placeholder="correo electronico" 
+              placeholder="Correo electrónico" 
               value={formData.email} 
               onChange={handleChange} 
               required 
@@ -66,23 +77,13 @@ const Formulario = () => {
             <input 
               type="password" 
               name="password" 
-              placeholder="contraseña" 
+              placeholder="Contraseña" 
               value={formData.password} 
               onChange={handleChange} 
               required 
             />
-            <button type="submit" id="enviar">Enviar</button>
-            <button type="reset" id="cancelar">Cancelar</button>
-          </form>
-
-          <form action="" id="formularioregistro" className="formulario-registro">
-            <h2>Registrarse</h2>
-            <input type="text" placeholder="Nombre completo:" required />
-            <input type="email" placeholder="Correo electronico" required />
-            <input type="text" placeholder="Usuario" required />
-            <input type="password" placeholder="Constraseña" required />
-            <button type="submit" id="enviar">enviar</button>
-            <button type="reset" id="cancelar">cancelar</button>
+            <button type="submit" id="enviar" onClick={handleSubmit}>Enviar</button>
+            <button type="reset" id="cancelar" onClick={handleCancel}>Cancelar</button>
           </form>
         </div>
       </div>

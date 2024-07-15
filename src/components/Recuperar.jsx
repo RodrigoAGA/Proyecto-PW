@@ -13,7 +13,7 @@ const Recuperar = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/forgot-password', {
+      const res = await fetch('http://localhost:3080/api/recuperar', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -21,11 +21,19 @@ const Recuperar = () => {
         body: JSON.stringify({ email }),
       });
 
-      const data = await res.json();
-      console.log("Revise su correo para recuperar su contraseña."); 
+      if (res.ok) {
+        window.location.href = '/CambiarContrasena';
+      } else {
+        const data = await res.json();
+        console.error(data.error);
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Error del servidor:', err);
     }
+  };
+
+  const handleCancel = () => {
+    window.location.href = '/Formulario';
   };
 
   return (
@@ -34,11 +42,11 @@ const Recuperar = () => {
       <div className="contenedor-todo">
         <div className="caja-trasera">
           <div className="caja-trasera-login">
-            <h3>¿Ya tiene una       ,</h3>
-            <p>Iniciar sesión para ingresa  ,</p>
+            <h3>¿Ya tiene una cuenta?</h3>
+            <p>Iniciar sesión para ingresar</p>
             <a href="./Formulario">Iniciar Sesión</a>
             <br />
-            <a href="./Recuperar">¿Olvido su contraseña?</a>
+            <a href="./Recuperar">¿Olvidó su contraseña?</a>
           </div>
           <div className="caja-trasera-registro">
             <h3>¿Aún no tiene cuenta?</h3>
@@ -59,23 +67,8 @@ const Recuperar = () => {
               onChange={handleChange}
               required
             />
-            <button type="submit" id="enviar">Enviar</button>
-            <button type="reset" id="cancelar">Cancelar</button>
-            <a href="./">
-
-            </a>
-          </form>
-
-          <form action="" id="formularioregistro" className="formulario-registro">
-            <h2>Registrarse</h2>
-            <input type="text" placeholder="Nombre completo:" required />
-            <input type="email" placeholder="Correo electrónico" required />
-            <input type="text" placeholder="Usuario" required />
-            <input type="password" placeholder="Contraseña" required />
-
-            <button type="submit" id="enviar">Enviar</button>
-            <button type="reset" id="cancelar">Cancelar</button>
-
+            <button type="submit" id="enviar" onClick={handleSubmit}>Enviar</button>
+            <button type="reset" id="cancelar" onClick={handleCancel}>Cancelar</button>
           </form>
         </div>
       </div>
