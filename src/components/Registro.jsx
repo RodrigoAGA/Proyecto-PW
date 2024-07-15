@@ -3,11 +3,9 @@ import Pie from './Pie';
 import Cabecera from './Cabecera';
 import './Parte1.css';
 
-const Registro = () => {
+const Formulario = () => {
   const [formData, setFormData] = useState({
-    nombre: '',
     email: '',
-    usuario: '',
     password: ''
   });
 
@@ -18,32 +16,30 @@ const Registro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:3080/api/registro', {
+      const res = await fetch('http://localhost:3080/api/formulario', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          nombre: formData.nombre,
-          usuario: formData.usuario,
           correo: formData.email,
-          contra: formData.password,
+          contra: formData.password
         }),
       });
 
-      const data = await res.json();
-      console.log(data);
-
-      // Redirigir a la página de formulario después del registro
-      window.location.href = './Formulario';
+      if (!res.ok) {
+        const data = await res.json();
+        console.error(data.msg);
+      } else {
+        window.location.href = '/DatosRegistroUsuario'; 
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Error del servidor:', err);
     }
   };
 
   const handleCancel = () => {
-    // Redirigir a la página de formulario al cancelar
-    window.location.href = './Formulario';
+    window.location.href = './';
   };
 
   return (
@@ -52,59 +48,42 @@ const Registro = () => {
       <div className="contenedor-todo">
         <div className="caja-trasera">
           <div className="caja-trasera-login">
-            <h3></h3>
-            <p>Iniciar sesión para </p>
-            <a href="./Formulario">Iniciar Sesión</a>
-            <br />
-            <a href="/Recuperar">¿Olvido su contraseña?</a>
+            <h3>¿Ya tiene una cuenta?</h3>
+            <p>Iniciar sesión para ingresar</p>
+            <button id="btn-iniciar-sesion">Iniciar Sesión</button>
+            <a href="./Recuperar">¿Olvidó su contraseña?</a>
           </div>
           <div className="caja-trasera-registro">
-            <h3>¿ya tiene una cuenta?</h3>
-            <a href="./Formulario">Ingrese aquí</a>
-            <p>¿Olvido su contraseña?</p>
-            <a href="./Recuperar">Recupérala Aquí.</a>
-            <p>¿Desea volver al inicio?</p>
-            <a href="./">Regrese Aquí</a>
+            <h3>¿Aún no tiene cuenta?</h3>
+            <p>Regístrese para ingresar.</p>
+            <a href="./Registro">Registro</a>
+            <br />
+            <a href="./Recuperar">¿Olvidó su contraseña?</a>
           </div>
         </div>
 
         <div className="contenedor-login-registro">
           <form onSubmit={handleSubmit} className="formulario-login">
-            <h2>Registrarse</h2>
-            <input
-              type="text"
-              name="nombre"
-              placeholder="Nombre completo:"
-              value={formData.nombre}
-              onChange={handleChange}
-              required
+            <h2>¡Bienvenido!</h2>
+            <h2>Ingrese sus datos para iniciar sesión</h2>
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="Correo electrónico" 
+              value={formData.email} 
+              onChange={handleChange} 
+              required 
             />
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo electrónico"
-              value={formData.email}
-              onChange={handleChange}
-              required
+            <input 
+              type="password" 
+              name="password" 
+              placeholder="Contraseña" 
+              value={formData.password} 
+              onChange={handleChange} 
+              required 
             />
-            <input
-              type="text"
-              name="usuario"
-              placeholder="Usuario"
-              value={formData.usuario}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            <button type="submit" id="enviar" onClick={handleSubmit}>Enviar</button>
-            <button type="button" id="cancelar" onClick={handleCancel}>Cancelar</button>
+            <button type="submit" id="enviar">Enviar</button>
+            <button type="reset" id="cancelar" onClick={handleCancel}>Cancelar</button>
           </form>
         </div>
       </div>
@@ -113,4 +92,4 @@ const Registro = () => {
   );
 };
 
-export default Registro;
+export default Formulario;
