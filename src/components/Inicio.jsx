@@ -28,7 +28,7 @@ function Inicio() {
         });
         setUniqueBrandItems(brandItems);
 
-        const latest = data.products.slice(-10);
+        const latest = data.products.slice(-10).reverse();
         setLatestItems(latest);
 
         const recent = data.products.slice(0, 5);

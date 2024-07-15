@@ -8,14 +8,27 @@ function Busqueda() {
     const [currentPage, setCurrentPage] = useState(1);
     const [sortCriteria, setSortCriteria] = useState('Ninguno');
     const [sortDirection, setSortDirection] = useState('asc');
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const productsPerPage = 6;
 
     useEffect(() => {
-        // Cargar datos desde el archivo JSON
-        fetch('/data/products.json')
-            .then(response => response.json())
-            .then(data => setProductosData(data.products))
-            .catch(error => console.error('Error al cargar los datos:', error));
+        const fetchProductos = async () => {
+            try {
+                const response = await fetch('http://localhost:3080/api/busqueda');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProductosData(data.products);
+                setLoading(false);
+            } catch (error) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchProductos();
     }, []);
 
     const sortProductos = (productos, criteria, direction) => {
@@ -69,7 +82,7 @@ function Busqueda() {
             containerDiv.appendChild(productoDetalleDiv);
 
             containerDiv.addEventListener('click', () => {
-                const url = `./Detalle?titulo=${encodeURIComponent(producto.name)}&fabricante=${encodeURIComponent(producto.brand)}&imagenSrc=${encodeURIComponent(producto.image)}&precio=${encodeURIComponent(producto.price.toFixed(2))}&description=${encodeURIComponent(producto.description)}&features=${encodeURIComponent(producto.features.join(', '))}`;
+                const url = `./Detalle?id=${encodeURIComponent(producto.id)}`;
                 window.location.href = url;
             });
 
@@ -96,6 +109,14 @@ function Busqueda() {
     };
 
     const totalPages = Math.ceil(productosData.length / productsPerPage);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
     return (
         <>
