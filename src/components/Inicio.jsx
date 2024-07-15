@@ -44,16 +44,8 @@ function Inicio() {
     fetchProducts();
   }, []);
 
-  const handleLearnMore = (item) => {
-    const queryParams = new URLSearchParams({
-      titulo: item.name,
-      fabricante: item.brand,
-      imagenSrc: item.image,
-      precio: item.price,
-      description: item.description,
-      features: item.features.join(", ")
-    }).toString();
-    window.location.href = `./detalle?${queryParams}`;
+  const handleLearnMore = (id) => {
+    window.location.href = `./detalle?id=${encodeURIComponent(id)}`;
   };
 
   return (
@@ -82,7 +74,7 @@ function Inicio() {
               </div>
               <div className="info-cuadrado">
                 <p>{`Colección de ${item.brand}`}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))
@@ -97,7 +89,7 @@ function Inicio() {
               </div>
               <div className="info-rect">
                 <p>{item.name}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))}
@@ -110,7 +102,7 @@ function Inicio() {
               </div>
               <div className="info-rect">
                 <p>{item.name}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))}
@@ -131,7 +123,7 @@ function Inicio() {
               </div>
               <div className="info-rect">
                 <p>{item.name}</p>
-                <button onClick={() => handleLearnMore(item)}>Learn More</button>
+                <button onClick={() => handleLearnMore(item.id)}>Learn More</button>
               </div>
             </div>
           ))}

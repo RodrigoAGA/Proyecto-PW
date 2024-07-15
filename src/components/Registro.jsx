@@ -18,23 +18,32 @@ const Registro = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:5000/api/auth/register', {
+      const res = await fetch('http://localhost:3080/api/registro', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: formData.usuario,
-          email: formData.email,
-          password: formData.password,
+          nombre: formData.nombre,
+          usuario: formData.usuario,
+          correo: formData.email,
+          contra: formData.password,
         }),
       });
 
       const data = await res.json();
-      console.log(data); 
+      console.log(data);
+
+      // Redirigir a la página de formulario después del registro
+      window.location.href = './Formulario';
     } catch (err) {
       console.error(err);
     }
+  };
+
+  const handleCancel = () => {
+    // Redirigir a la página de formulario al cancelar
+    window.location.href = './Formulario';
   };
 
   return (
@@ -59,7 +68,6 @@ const Registro = () => {
           </div>
         </div>
 
-        {/* Formularios */}
         <div className="contenedor-login-registro">
           <form onSubmit={handleSubmit} className="formulario-login">
             <h2>Registrarse</h2>
@@ -95,8 +103,8 @@ const Registro = () => {
               onChange={handleChange}
               required
             />
-            <button type="submit" id="enviar">Enviar</button>
-            <button type="reset" id="cancelar">Cancelar</button>
+            <button type="submit" id="enviar" onClick={handleSubmit}>Enviar</button>
+            <button type="button" id="cancelar" onClick={handleCancel}>Cancelar</button>
           </form>
         </div>
       </div>
