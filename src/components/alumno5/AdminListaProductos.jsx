@@ -4,6 +4,24 @@ import Cabecera from '../Cabecera'
 import "../Parte1.css"
 
 function AdminListaProductos() {
+        // const [productos, setProductos] = useState([]);
+        // const [busqueda, setBusqueda] = useState("");
+      
+        // useEffect(() => {
+        //   fetch("/api/alumno4/producto")
+        //     .then(response => response.json())
+        //     .then(data => setProductos(data))
+        //     .catch(error => console.error('Error al cargar los productos:', error));
+        // }, []);
+      
+        // const manejarBusqueda = (e) => {
+        //   setBusqueda(e.target.value);
+        // };
+      
+        // const productosFiltrados = productos.filter(producto =>
+        //   producto.name.toLowerCase().includes(busqueda.toLowerCase()) ||
+        //   producto.description.toLowerCase().includes(busqueda.toLowerCase())
+        // );
     return (
         <>
         <Cabecera/>
